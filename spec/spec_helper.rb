@@ -1,4 +1,5 @@
 require 'coveralls'
+require 'valid_attribute'
 Coveralls.wear!('rails')
 
 RSpec.configure do |config|

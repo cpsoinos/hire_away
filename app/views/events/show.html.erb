@@ -1,0 +1,10 @@
+<h1><%= @event.name %></h1>
+
+<p><%= @event.venue.name %></p>
+<p><%= @event.venue.street_address %></p>
+<% if @event.venue.street_address_2 %>
+  <p><%= @event.venue.street_address %></p>
+<% end %>
+<p><%= "#{@event.venue.city}, #{@event.venue.state}" %></p>
+<br>
+<p>About this event: <%= @event.description %></p>

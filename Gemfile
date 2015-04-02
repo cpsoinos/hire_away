@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 gem 'rails', '4.2.1'
 gem 'pg'
 gem 'sass-rails', '~> 5.0'
@@ -15,6 +14,8 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
   gem 'spring'
   gem 'coveralls', require: false
+  gem 'pry'
+  gem 'faker'
 end
 
 
@@ -27,3 +28,5 @@ gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'devise'
 gem 'foundation-rails'
 gem 'money-rails'
+gem 'kaminari'
+gem 'country_state_select'

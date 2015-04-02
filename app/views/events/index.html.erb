@@ -1,0 +1,19 @@
+<h1>Events</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Venue</th>
+    <th>City</th>
+    <th>State</th>
+  </tr>
+
+  <% @events.each do |event| %>
+    <tr>
+      <td><%= link_to event.name, event_path(event) %></td>
+      <td><%= event.venue.name %></td>
+      <td><%= event.venue.city %></td>
+      <td><%= event.venue.state %></td>
+    </tr>
+  <% end %>
+</table>
