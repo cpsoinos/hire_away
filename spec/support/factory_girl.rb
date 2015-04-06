@@ -30,7 +30,6 @@ FactoryGirl.define do
     admin true
   end
 
-
   factory :event do
     sequence(:name) { |n| "#{Faker::Company.name} #{Faker::Company.suffix}#{n}" }
     description Faker::Lorem.sentence
