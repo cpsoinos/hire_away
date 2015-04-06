@@ -1,5 +1,5 @@
 class Venue < ActiveRecord::Base
-  has_many :users
+  has_many :events
 
   validates :name, presence: true
   validates :city, presence: true

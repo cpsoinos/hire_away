@@ -41,19 +41,19 @@ feature "admin views events" do
   scenario "admin views event details page" do
     visit event_path(event)
 
-    expect(page).to have_content("Edit event")
-    expect(page).to have_content("Delete event")
+    expect(page).to have_button("Edit event")
+    expect(page).to have_button("Delete event")
   end
 
   scenario "admin wants to add a new event" do
     visit events_path
 
-    expect(page).to have_button("New Event")
+    expect(page).to have_button("Add new event")
   end
 
   scenario "admin goes to add a new event" do
     visit events_path
-    click_button("New Event")
+    click_button("Add new event")
 
     expect(page).to have_content("Enter event details below:")
   end
@@ -62,9 +62,9 @@ feature "admin views events" do
     visit new_event_path
     fill_in "Name", with: event.name
     fill_in "Description", with: event.description
-    fill_in "Start time", with: event.start_time
-    fill_in "End time", with: event.end_time
-    select event.venue, from: "Venue"
+    # fill_in "Start time", with: event.start_time
+    # fill_in "End time", with: event.end_time
+    select event.venue.name, from: "event_venue_id"
     click_button("Create Event")
 
     expect(page).to have_content("Event created!")

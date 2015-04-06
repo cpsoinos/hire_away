@@ -8,3 +8,6 @@
 <p><%= "#{@event.venue.city}, #{@event.venue.state}" %></p>
 <br>
 <p>About this event: <%= @event.description %></p>
+
+<%= button_to "Edit event", edit_event_path(@event) %>
+<%= button_to "Delete event", event_path(@event), action: :destroy %>
