@@ -15,6 +15,7 @@ group :development, :test do
   gem 'spring'
   gem 'coveralls', require: false
   gem 'pry'
+  gem 'pry-rails'
   gem 'faker'
 end
 

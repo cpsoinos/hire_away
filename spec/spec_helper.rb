@@ -1,7 +1,7 @@
 require 'coveralls'
-require 'valid_attribute'
 require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
+require 'valid_attribute'
 
 Coveralls.wear!('rails')
 

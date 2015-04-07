@@ -19,15 +19,14 @@ feature "user registers", %Q{
     fill_in "Email", with: "john.smith@fake.com"
     fill_in "Password", with: user.password
     fill_in "Password confirmation", with: user.password
-    fill_in "user_first_name", with: user.first_name
-    fill_in "user_last_name", with: user.last_name
+    fill_in "First name", with: user.first_name
+    fill_in "Last name", with: user.last_name
     fill_in "user_street_address", with: user.street_address
     fill_in "user_street_address_2", with: user.street_address_2
     fill_in "user_city", with: user.city
     select "Massachusetts", from: "user_state"
     fill_in "user_zip_code", with: user.zip_code
     fill_in "user_phone", with: user.phone
-
     click_button "Sign up"
 
     expect(page).to have_content("Welcome! You have signed up successfully.")
