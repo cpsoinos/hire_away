@@ -1,0 +1,6 @@
+<h1>Edit venue details below</h1>
+
+<%= render "form" %>
+
+<%= button_to "Delete venue", venue_path(@venue),
+  method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>

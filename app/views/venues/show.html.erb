@@ -1,0 +1,19 @@
+<h1><%= @venue.name %></h1>
+
+<ul>
+  <li class="venue"><%= @venue.street_address %></li>
+  <% if @venue.street_address_2 %>
+    <li class="venue"><%= @venue.street_address_2 %></li>
+  <% end %>
+  <li class="venue-city-state-zip"><%= @venue.city %>,
+    <%= @venue.state %> <%= @venue.zip_code %></li>
+  <% @optionals.each do |option| %>
+    <% if option %>
+      <li><%= option %></li>
+    <% end %>
+  <% end %>
+</ul>
+
+<%= button_to "Edit venue", edit_venue_path(@venue), method: :get %>
+<%= button_to "Delete venue", venue_path(@venue),
+  method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>
