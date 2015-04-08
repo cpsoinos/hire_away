@@ -77,6 +77,15 @@ feature "admin views venues", %Q{
     expect(page).to have_content("Venue updated!")
   end
 
+  scenario "admin provides new invalid info" do
+    visit edit_venue_path(venue)
+    fill_in "Name", with: ""
+    click_button("Update Venue")
+
+    expect(page).to have_content("Name can't be blank")
+  end
+
+
   scenario "admin deletes a venue from index" do
     visit venues_path
     click_button("Delete")

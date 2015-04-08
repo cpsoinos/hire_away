@@ -68,6 +68,16 @@ feature "admin views events" do
     expect(page).to have_content("Event created!")
   end
 
+  scenario "admin provides invalid details to add a new event" do
+    visit new_event_path
+    fill_in "Name", with: event.name
+    fill_in "Description", with: event.description
+    select event.venue.name, from: "event_venue_id"
+    click_button("Create Event")
+
+    expect(page).to have_content("Event created!")
+  end
+
   scenario "admin wants to edit an existing event" do
     visit edit_event_path(event)
 
