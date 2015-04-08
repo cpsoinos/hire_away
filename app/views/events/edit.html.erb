@@ -1,0 +1,6 @@
+<h1>Edit event details below</h1>
+
+<%= render "form" %>
+
+<%= button_to "Delete event", event_path(@event),
+  method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>

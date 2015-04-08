@@ -23,6 +23,29 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+    @event = Event.find(params[:id])
+    @venues = Venue.order("name ASC")
+  end
+
+  def update
+    @event = Event.find(params[:id])
+    @venues = Venue.order("name ASC")
+    if @event.update(event_params)
+      flash[:notice] = "Event updated!"
+      redirect_to event_path(@event)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @event = Event.find(params[:id])
+    @event.destroy
+    flash[:notice] = "Event deleted!"
+    redirect_to events_path
+  end
+
   private
 
   def event_params

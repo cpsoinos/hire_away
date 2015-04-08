@@ -9,5 +9,6 @@
 <br>
 <p>About this event: <%= @event.description %></p>
 
-<%= button_to "Edit event", edit_event_path(@event) %>
-<%= button_to "Delete event", event_path(@event), action: :destroy %>
+<%= button_to "Edit event", edit_event_path(@event), method: :get %>
+<%= button_to "Delete event", event_path(@event),
+  method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>
