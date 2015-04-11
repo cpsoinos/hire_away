@@ -15,6 +15,7 @@ class EventsController < ApplicationController
   def create
     @venue = Venue.find(params[:event][:venue_id])
     @event = @venue.events.new(event_params)
+    @venues = Venue.order("name ASC")
     if @event.save
       flash[:notice] = "Event created!"
       redirect_to event_path(@event)

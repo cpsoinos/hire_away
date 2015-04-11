@@ -70,12 +70,11 @@ feature "admin views events" do
 
   scenario "admin provides invalid details to add a new event" do
     visit new_event_path
-    fill_in "Name", with: event.name
-    fill_in "Description", with: event.description
-    select event.venue.name, from: "event_venue_id"
+    fill_in "Name", with: ""
+    fill_in "Description", with: ""
     click_button("Create Event")
 
-    expect(page).to have_content("Event created!")
+    expect(page).to have_content("Name can't be blank")
   end
 
   scenario "admin wants to edit an existing event" do
