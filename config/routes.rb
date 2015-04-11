@@ -21,4 +21,15 @@ Rails.application.routes.draw do
     :update,
     :destroy
   ]
+
+  resources :positions, only: [
+    :index,
+    :show,
+    :new,
+    :create,
+    :edit,
+    :update,
+    :destroy
+  ]
+
 end

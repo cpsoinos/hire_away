@@ -44,4 +44,9 @@ FactoryGirl.define do
     city "Cambridge"
     state "Massachusetts"
   end
+
+  factory :position do
+    sequence(:name) { |n| "Position#{n}" }
+    pay_rate_cents 15
+  end
 end
