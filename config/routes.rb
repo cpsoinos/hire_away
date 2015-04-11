@@ -9,7 +9,8 @@ Rails.application.routes.draw do
     :create,
     :edit,
     :update,
-    :destroy
+    :destroy,
+    :venues_select
   ]
 
   resources :venues, only: [
