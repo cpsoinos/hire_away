@@ -2,12 +2,11 @@ require 'rails_helper'
 
 feature "admin hires for an event", %Q{
   As an admin
-  I want to offer people positions for an event
-  So I can hire them
+  I want to manage positions
+  So I can add them to events
 } do
 
   let!(:event) { FactoryGirl.create(:event) }
-  # let!(:user) { FactoryGirl.create(:user) }
   let!(:admin) { FactoryGirl.create(:admin) }
   let!(:position) { FactoryGirl.create(:position) }
   before :each do
