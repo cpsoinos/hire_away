@@ -12,6 +12,12 @@ Rails.application.routes.draw do
     :destroy
   ]
 
+  # resources :events, only: [
+  #   :new,
+  #   :update
+  # ] do
+  #
+
   resources :venues, only: [
     :index,
     :show,

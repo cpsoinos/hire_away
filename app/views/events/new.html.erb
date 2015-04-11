@@ -1,3 +1,10 @@
-<h1>Enter event details below:</h1>
+<h1>New Event</h1>
 
-<%= render "form" %>
+<p><input type="button" name="new-venue-button" value="Create a new venue" class="new-venue-button" /> or select an existing one in the form below.</p>
+<div id="new-venue-form">
+  <%= render "./venues/form" %>
+</div>
+
+<div id="new-event-form"
+  <%= render "form" %>
+</div>
