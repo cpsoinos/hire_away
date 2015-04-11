@@ -28,12 +28,19 @@ class PositionsController < ApplicationController
 
   def update
     @position = Position.find(params[:id])
-    if position.update(position_params)
+    if @position.update(position_params)
       flash[:notice] = "Position updated!"
       redirect_to :back
     else
       render :edit
     end
+  end
+
+  def destroy
+    @position = Position.find(params[:id])
+    @position.destroy
+    flash[:notice] = "Position deleted!"
+    redirect_to events_path
   end
 
   private
