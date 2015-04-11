@@ -9,14 +9,9 @@ Rails.application.routes.draw do
     :create,
     :edit,
     :update,
-    :destroy
+    :destroy,
+    :venues_select
   ]
-
-  # resources :events, only: [
-  #   :new,
-  #   :update
-  # ] do
-  #
 
   resources :venues, only: [
     :index,
