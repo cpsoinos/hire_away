@@ -1,0 +1,18 @@
+<h1>Venues</h1>
+
+<%= button_to "New venue", new_venue_path, method: :get %>
+
+<table>
+  <tr>
+    <th>Name</th>
+  </tr>
+  <% @venues.each do |venue| %>
+    <tr>
+      <td><%= link_to venue.name, venue_path(venue) %></td>
+      <td><%= button_to "Edit venue", venue_path(venue), method: :get %></td>
+      <td><%= button_to "Delete venue", venue_path(venue),
+        method: :delete, action: :destroy,
+        data: { confirm: "Are you sure?" } %></td>
+    </tr>
+  <% end %>
+</table>

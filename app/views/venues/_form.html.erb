@@ -1,0 +1,54 @@
+<%= form_for @venue do |f| %>
+  <% @venue.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :street_address %><br>
+    <%= f.text_field :street_address %>
+  </div>
+
+  <div class="field">
+    <%= f.label :street_address_2 %><br>
+    <%= f.text_field :street_address_2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :city %><br>
+    <%= f.text_field :city %>
+  </div>
+
+  <div class="field"
+    <%= f.label :state %><br>
+    <%= f.select :state, options_for_select(CountryStateSelect::Constant::USA_STATES) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :zip_code %><br>
+    <%= f.text_field :zip_code %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contact_name %>
+    <%= f.text_field :contact_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contact_phone %>
+    <%= f.text_field :contact_phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :contact_email %>
+    <%= f.text_field :contact_email %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

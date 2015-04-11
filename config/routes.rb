@@ -11,4 +11,14 @@ Rails.application.routes.draw do
     :update,
     :destroy
   ]
+
+  resources :venues, only: [
+    :index,
+    :show,
+    :new,
+    :create,
+    :edit,
+    :update,
+    :destroy
+  ]
 end
