@@ -6,7 +6,7 @@
   <div class="venue-container">
     <div class="field" id="venues">
       <%= f.label :venue %><br>
-      <%= f.select(:venue_id, @venues.collect { |venue| [venue.name, venue.id] } , { prompt: "Choose venue" }) %>
+      <%= f.select(:venue_id, @venues.collect { |venue| [venue.name, venue.id] }) %>
     </div>
   </div>
 
