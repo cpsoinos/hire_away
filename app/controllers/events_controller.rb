@@ -23,7 +23,6 @@ class EventsController < ApplicationController
     @venue = Venue.find(params[:event][:venue_id])
     @event = @venue.events.new(event_params)
     @venues = Venue.order("name ASC")
-    @venues_array = @venues.map { |venue| [venue.name, venue.id] }
     if @event.save
       flash[:notice] = "Event created!"
       redirect_to event_path(@event)
