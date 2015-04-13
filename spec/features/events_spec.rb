@@ -55,13 +55,14 @@ feature "admin views events" do
     visit events_path
     click_button("Add new event")
 
-    expect(page).to have_content("Enter event details below:")
+    expect(page).to have_button("Create a new venue")
+    expect(page).to have_content("or select an existing one in the form below")
   end
 
   scenario "admin provides valid details to add a new event" do
     visit new_event_path
-    fill_in "Name", with: event.name
-    fill_in "Description", with: event.description
+    fill_in "event_name", with: event.name
+    fill_in "event_description", with: event.description
     select event.venue.name, from: "event_venue_id"
     click_button("Create Event")
 
@@ -70,9 +71,49 @@ feature "admin views events" do
 
   scenario "admin provides invalid details to add a new event" do
     visit new_event_path
-    fill_in "Name", with: ""
-    fill_in "Description", with: ""
+    fill_in "event_name", with: ""
+    fill_in "event_description", with: ""
     click_button("Create Event")
+
+    expect(page).to have_content("Name can't be blank")
+  end
+
+  scenario "admin creates a new venue before creating a new event" do
+    visit new_event_path
+    click_button "Create a new venue"
+    fill_in "venue_name", with: "GitHub"
+    fill_in "Street address", with: "teh intarwebs"
+    fill_in "City", with: "Not a real place, duh"
+    fill_in "Zip code", with: "01345"
+    click_button("Create Venue")
+
+    expect(page).to have_content("Venue created!")
+  end
+
+  scenario "admin creates a new event after creating a new venue" do
+    visit new_event_path
+    click_button "Create a new venue"
+    fill_in "venue_name", with: "GitHub"
+    fill_in "Street address", with: "teh intarwebs"
+    fill_in "City", with: "Not a real place, duh"
+    fill_in "Zip code", with: "01345"
+    click_button("Create Venue")
+
+    # rspec is not recognizing that this request is sent by JS,
+    # so explicitly visiting the page again
+    visit new_event_path
+    select "GitHub", from: "event_venue_id"
+    fill_in "event_name", with: "Pull Request"
+    click_button("Create Event")
+
+    expect(page).to have_content("Event created!")
+  end
+
+  scenario "admin unsuccessfully creates a new venue before creating a new event" do
+    visit new_event_path
+    click_button "Create a new venue"
+    fill_in "venue_name", with: ""
+    click_button("Create Venue")
 
     expect(page).to have_content("Name can't be blank")
   end

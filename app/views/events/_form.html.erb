@@ -3,6 +3,17 @@
     <p><%= msg %></p>
   <% end %>
 
+  <div class="venue-container">
+    <div class="field" id="venues">
+      <%= f.label :venue %><br>
+      <%= f.select(:venue_id) do %>
+        <% @venues.each do |venue| %>
+          <%= content_tag(:option, venue.name, value: venue.id) %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+
   <div class="field">
     <%= f.label :name %><br>
     <%= f.text_field :name %>
@@ -11,15 +22,6 @@
   <div class="field">
     <%= f.label :description %><br>
     <%= f.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= f.label :venue %><br>
-    <%= f.select(:venue_id) do %>
-      <% @venues.each do |venue| %>
-        <%= content_tag(:option, venue.name, value: venue.id) %>
-      <% end %>
-    <% end %>
   </div>
 
   <div class="field">

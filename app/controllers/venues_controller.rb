@@ -21,8 +21,16 @@ class VenuesController < ApplicationController
   def create
     @venue = Venue.create(venue_params)
     if @venue.save
-      flash[:notice] = "Venue created!"
-      redirect_to venue_path(@venue)
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Venue created!"
+          redirect_to venue_path(@venue)
+        end
+
+        format.js do
+          render :create
+        end
+      end
     else
       render :new
     end
