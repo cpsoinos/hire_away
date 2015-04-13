@@ -15,8 +15,15 @@ class PositionsController < ApplicationController
   def create
     @position = Position.new(position_params)
     if @position.save
-      flash[:notice] = "Position created!"
-      redirect_to :back
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Position created!"
+          redirect_to :back
+        end
+        format.js do
+          render :create
+        end
+      end
     else
       render :new
     end

@@ -5,6 +5,10 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @call = @event.calls.new
+    @positions = Position.all
+    @position = @event.positions.new
+    @users = User.order("last_name ASC")
   end
 
   def new
@@ -29,6 +33,7 @@ class EventsController < ApplicationController
   def edit
     @event = Event.find(params[:id])
     @venues = Venue.order("name ASC")
+    @positions = Position.all
   end
 
   def update
@@ -53,8 +58,11 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(
-      :name, :description, :start_time, :end_time
+      :name, :description, :start_time, :end_time, :position
       )
   end
 
+  def call_params
+    params.require(:call).permit(:event, :user)
+  end
 end

@@ -13,7 +13,32 @@
 <%= button_to "Delete event", event_path(@event),
   method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>
 
-<h3>Positions</h3>
-<%= button_to "Add Position", new_position_path, method: :get %>
+<h5>Positions</h5>
+<input type="button" name="add-position-button" value="Add Position" id="add-position-button" />
+<div id="add-position-menu">
+  <%= form_for [@event, @call], remote: true do |f| %>
+    <div class="field">
+      <%= f.collection_select(:position_id, @positions, :id, :name, prompt: true) %>
+      <!-- <%= collection_select(:user, :call_id, @users, :id, :full_name, prompt: true) %> -->
+    </div>
+    <div class="actions" id="call-action-button">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+<% if @event.calls.length >= 1 %>
+  <ul id="event-call-list">
+    <% @event.calls.each do |call| %>
+      <% if call.valid? %>
+        <li><%= call.position.name %></li>
+      <% end %>
+    <% end %>
+  </ul>
+<% end %>
 
-<%= button_to "New Position", new_position_path, method: :get %>
+
+<p>Don't see the position you're looking for?</p>
+<input type="button" name="new-position-button" value="Add a new position" id="new-position-button" />
+<div id="new-position-form">
+  <%= render "./positions/form" %>
+</div>
