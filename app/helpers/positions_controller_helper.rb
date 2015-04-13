@@ -1,0 +1,2 @@
+module PositionsControllerHelper
+end

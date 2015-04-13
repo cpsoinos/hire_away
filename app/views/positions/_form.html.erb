@@ -1,0 +1,19 @@
+<%= form_for @position, remote: true do |f| %>
+  <% @position.errors.full_messages.each do |msg| %>
+    <p><%= msg %></p>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :pay_rate_cents %><br>
+    <%= f.text_field :pay_rate_cents %>
+  </div>
+
+  <div class="actions" id="position-action-button">
+    <%= f.submit %>
+  </div>
+<% end %>

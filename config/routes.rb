@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     :venues_select
   ]
 
+  resources :events, only: [:show] do
+    resources :calls
+    resources :offers
+  end
+
   resources :venues, only: [
     :index,
     :show,
@@ -22,4 +27,18 @@ Rails.application.routes.draw do
     :update,
     :destroy
   ]
+
+  resources :positions, only: [
+    :index,
+    :show,
+    :new,
+    :create,
+    :edit,
+    :update,
+    :destroy
+  ]
+
+  resources :calls
+  resources :offers
+
 end

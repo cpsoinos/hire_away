@@ -26,7 +26,6 @@ class VenuesController < ApplicationController
           flash[:notice] = "Venue created!"
           redirect_to venue_path(@venue)
         end
-
         format.js do
           render :create
         end

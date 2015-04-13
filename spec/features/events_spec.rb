@@ -29,7 +29,11 @@ feature "guest views list of events", %Q{
   end
 end
 
-feature "admin views events" do
+feature "admin views list of events", %Q{
+  As an admin
+  I want to view a list of events
+  So I can see what the company is doing
+} do
 
   let!(:event) { FactoryGirl.create(:event) }
   let!(:user) { FactoryGirl.create(:user) }
