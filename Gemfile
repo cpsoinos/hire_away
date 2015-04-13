@@ -17,6 +17,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-rails'
   gem 'faker'
+  gem 'fuubar'
 end
 
 
@@ -32,4 +33,3 @@ gem 'foundation-rails'
 gem 'money-rails'
 gem 'kaminari'
 gem 'country_state_select'
-gem 'fuubar'

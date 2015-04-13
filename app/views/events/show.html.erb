@@ -42,3 +42,11 @@
 <div id="new-position-form">
   <%= render "./positions/form" %>
 </div>
+
+<h5>Vendors</h5>
+<%= form_for @call do |f| %>
+  <% @users.each do |user| %>
+    <%= f.label :user %>
+    <%= f.check_box :user %>
+  <% end %>
+<% end %>
