@@ -10,6 +10,7 @@ class EventsController < ApplicationController
     @positions = Position.all
     @position = @event.positions.new
     @users = User.order("last_name ASC")
+    @offers = @event.offers.order("created_at ASC")
   end
 
   def new

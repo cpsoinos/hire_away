@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :events, only: [:show] do
     resources :calls
+    resources :offers
   end
 
   resources :venues, only: [

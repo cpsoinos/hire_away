@@ -43,11 +43,24 @@
 </div>
 
 <h5>Vendors</h5>
-<%= form_for @offer do |f| %>
+<%= form_for [@event, @offer] do |f| %>
   <div class="field">
-    <%= f.select(:user_id, @users.collect { |user| [user.full_name, user.id] }, { }, { multiple: true }) %>
+    <%= f.select(:user_id, @users.collect { |user| [user.full_name, user.id] }, { include_hidden: false }, { multiple: true }) %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+
+<h6>Vendors emailed</h6>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Emailed at</th>
+  </tr>
+  <% @offers.each do |offer| %>
+    <tr>
+      <td><%= mail_to offer.user.email, offer.user.full_name %></td>
+      <td><%= offer.created_at.strftime("%l:%M %P %d %b %y") %></td>
+  <% end %>
+</ul>
