@@ -13,4 +13,7 @@
 <%= button_to "Delete event", event_path(@event),
   method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>
 
+<h3>Positions</h3>
+<%= button_to "Add Position", new_position_path, method: :get %>
+
 <%= button_to "New Position", new_position_path, method: :get %>
