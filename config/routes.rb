@@ -38,5 +38,6 @@ Rails.application.routes.draw do
   ]
 
   resources :calls
+  resources :offers
 
 end

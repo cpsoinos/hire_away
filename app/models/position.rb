@@ -1,6 +1,6 @@
 class Position < ActiveRecord::Base
-  belongs_to :event
-  belongs_to :user
+  has_many :calls
+  has_many :events, through: :calls
 
   validates :name, presence: true
   validates :pay_rate_cents, presence: true

@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @call = @event.calls.new
+    @offer = @call.offers.new
     @positions = Position.all
     @position = @event.positions.new
     @users = User.order("last_name ASC")

@@ -19,7 +19,6 @@
   <%= form_for [@event, @call], remote: true do |f| %>
     <div class="field">
       <%= f.collection_select(:position_id, @positions, :id, :name, prompt: true) %>
-      <!-- <%= collection_select(:user, :call_id, @users, :id, :full_name, prompt: true) %> -->
     </div>
     <div class="actions" id="call-action-button">
       <%= f.submit %>
@@ -44,9 +43,11 @@
 </div>
 
 <h5>Vendors</h5>
-<%= form_for @call do |f| %>
-  <% @users.each do |user| %>
-    <%= f.label :user %>
-    <%= f.check_box :user %>
-  <% end %>
+<%= form_for @offer do |f| %>
+  <div class="field">
+    <%= f.select(:user_id, @users.collect { |user| [user.full_name, user.id] }, { }, { multiple: true }) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
