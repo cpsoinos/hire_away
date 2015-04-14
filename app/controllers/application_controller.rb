@@ -16,5 +16,4 @@ class ApplicationController < ActionController::Base
       :phone
     ]
   end
-
 end

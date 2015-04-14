@@ -8,7 +8,7 @@ feature "guest views list of events", %Q{
 
   let!(:event) { FactoryGirl.create(:event) }
   let!(:user) { FactoryGirl.create(:user) }
-  let(:admin) { FactoryGirl.create(:admin) }
+  let!(:admin) { FactoryGirl.create(:admin) }
 
   scenario "guest goes to home page" do
     visit root_path

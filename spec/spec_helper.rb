@@ -2,6 +2,7 @@ require 'coveralls'
 require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 require 'valid_attribute'
+require 'sidekiq/testing'
 
 Coveralls.wear!('rails')
 
