@@ -7,8 +7,8 @@ feature "admin sends out calls for an event", %Q{
 } do
 
   let!(:admin) { FactoryGirl.create(:admin) }
-  let!(:user) {FactoryGirl.create(:user) }
-  let!(:event) {FactoryGirl.create(:event) }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:event) { FactoryGirl.create(:event) }
   # let!(:offer) { FactoryGirl.create(:offer) }
   before :each do
     sign_in admin
@@ -19,6 +19,7 @@ feature "admin sends out calls for an event", %Q{
     select(user.full_name, from: "offer_user_id")
     click_button "Create Offer"
     # save_and_open_page
+    binding.pry
     expect { OfferWorker.perform_async(user.offers.first) }.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
 
     # expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to eq(1)
