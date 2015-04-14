@@ -1,5 +1,3 @@
-require 'sidekiq/web'
-
 Rails.application.routes.draw do
   root "events#index"
   devise_for :users
@@ -42,7 +40,5 @@ Rails.application.routes.draw do
 
   resources :calls
   resources :offers
-
-  mount Sidekiq::Web, at: '/sidekiq'
 
 end

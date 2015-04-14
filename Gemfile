@@ -32,7 +32,4 @@ gem 'foundation-rails', "5.5.1.0"
 gem 'money-rails'
 gem 'kaminari'
 gem 'country_state_select'
-gem 'sidekiq'
-gem 'sinatra', require: false
-gem 'slim'
 gem 'local_time'
