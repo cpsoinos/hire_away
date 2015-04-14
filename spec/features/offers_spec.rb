@@ -18,9 +18,8 @@ feature "admin sends out calls for an event", %Q{
     visit event_path(event)
     select(user.full_name, from: "offer_user_id")
     click_button "Create Offer"
-    save_and_open_page
-    # binding.pry
-    expect { OfferNotifier.delay.new_offer(user.offers.first) }.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
+    # save_and_open_page
+    expect { OfferWorker.perform_async(user.offers.first) }.to change(Sidekiq::Extensions::DelayedMailer.jobs, :size).by(1)
 
     # expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to eq(1)
 

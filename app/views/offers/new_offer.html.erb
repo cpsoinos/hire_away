@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    Hi <%= @offer.user.first_name %>,
+
+    We're looking for overhires for <%= @event %>. We need:
+
+    <table>
+      <tr>
+        <th>Position</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+      </tr>
+      <% @calls.each do |call| %>
+        <tr>
+          <td><%= call.position.name %></td>
+          <td><%= call.start_time %></td>
+          <td><%= call.end_time %></td>
+        </tr>
+      <% end %>
+    </table>
+
+    Put a check next to any times you're available for and click "submit".<br>
+    We'll let you know if you're hired!
+
+    Thanks!
+  </body>
+</html>

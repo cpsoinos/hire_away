@@ -68,6 +68,8 @@ feature "admin views list of events", %Q{
     fill_in "event_name", with: event.name
     fill_in "event_description", with: event.description
     select event.venue.name, from: "event_venue_id"
+    fill_in("event_start_time", with: DateTime.now)
+    fill_in("event_end_time", with: DateTime.now)
     click_button("Create Event")
 
     expect(page).to have_content("Event created!")
@@ -108,6 +110,8 @@ feature "admin views list of events", %Q{
     visit new_event_path
     select "GitHub", from: "event_venue_id"
     fill_in "event_name", with: "Pull Request"
+    fill_in("event_start_time", with: DateTime.now)
+    fill_in("event_end_time", with: DateTime.now)
     click_button("Create Event")
 
     expect(page).to have_content("Event created!")

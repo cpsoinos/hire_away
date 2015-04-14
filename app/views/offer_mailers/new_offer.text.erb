@@ -1,0 +1,9 @@
+Hi <%= @offer.user.first_name %>,
+
+We're looking for overhires for <%= @event %>. We need:
+
+<% @calls.each do |call| %>
+  <%= call.position.name %>
+  <%= call.start_time %>
+  <%= call.end_time %>
+<% end %>

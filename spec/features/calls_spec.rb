@@ -17,6 +17,8 @@ feature "admin sends out calls for an event", %Q{
   scenario "admin adds a call to an event" do
     visit event_path(event)
     select(position.name, from: "call_position_id")
+    fill_in("call_start_time", with: DateTime.now)
+    fill_in("call_end_time", with: DateTime.now)
     click_button "Create Call"
 
     expect(page).to have_content(position.name)

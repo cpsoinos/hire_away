@@ -18,7 +18,6 @@ class OffersController < ApplicationController
       @offers.each do |offer|
         offer.save
         OfferWorker.perform_async(offer.id)
-        # binding.pry
       end
       flash[:notice] = "Offers sent!"
       redirect_to event_path(@event)
