@@ -21,6 +21,6 @@ class CallsController < ApplicationController
   private
 
   def call_params
-    params.require(:call).permit(:event, :position_id)
+    params.require(:call).permit(:event, :position_id, :start_time, :end_time)
   end
 end

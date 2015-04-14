@@ -1,1 +1,1 @@
-$("#event-call-list").append("<li><%= @call.position.name %></li>");
+$("<%= escape_javascript(render @call) %>").appendTo("#event-call-list");

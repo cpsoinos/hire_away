@@ -49,4 +49,9 @@ FactoryGirl.define do
     sequence(:name) { |n| "Position#{n}" }
     pay_rate_cents 15
   end
+
+  factory :offer do
+    user
+    event
+  end
 end

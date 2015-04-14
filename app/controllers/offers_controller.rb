@@ -17,7 +17,8 @@ class OffersController < ApplicationController
     else
       @offers.each do |offer|
         offer.save
-        OfferNotifier.new(offer).deliver_later
+        OfferWorker.perform_async(offer.id)
+        # binding.pry
       end
       flash[:notice] = "Offers sent!"
       redirect_to event_path(@event)

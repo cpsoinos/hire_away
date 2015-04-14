@@ -6,7 +6,7 @@ class OfferNotifier < ApplicationMailer
 
     mail(
       to: offer.user.email,
-      subject: "Overhire call for #{@vent.name}"
+      subject: "Overhire call for #{@event.name}"
     )
   end
 end

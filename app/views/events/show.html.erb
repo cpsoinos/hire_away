@@ -1,9 +1,11 @@
 <h1><%= @event.name %></h1>
 
+<p><%= @event.start_time.strftime("%B %e, %Y %l:%M%P") %> - <%= @event.end_time.strftime("%B %e, %Y %l:%M%P") %></p>
+
 <p><%= @event.venue.name %></p>
 <p><%= @event.venue.street_address %></p>
 <% if @event.venue.street_address_2 %>
-  <p><%= @event.venue.street_address %></p>
+  <p><%= @event.venue.street_address_2 %></p>
 <% end %>
 <p><%= "#{@event.venue.city}, #{@event.venue.state}" %></p>
 <br>
@@ -13,28 +15,50 @@
 <%= button_to "Delete event", event_path(@event),
   method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>
 
-<h5>Positions</h5>
+<h5>Calls</h5>
 <input type="button" name="add-position-button" value="Add Position" id="add-position-button" />
 <div id="add-position-menu">
   <%= form_for [@event, @call], remote: true do |f| %>
     <div class="field">
       <%= f.collection_select(:position_id, @positions, :id, :name, prompt: true) %>
     </div>
+
+    <div class="field">
+      <%= f.label :start_time %><br>
+      <%= f.datetime_local_field :start_time %>
+    </div>
+
+    <div class="field">
+      <%= f.label :end_time %><br>
+      <%= f.datetime_local_field :end_time %>
+    </div>
+
     <div class="actions" id="call-action-button">
       <%= f.submit %>
     </div>
   <% end %>
 </div>
-<% if @event.calls.length >= 1 %>
-  <ul id="event-call-list">
-    <% @event.calls.each do |call| %>
-      <% if call.valid? %>
-        <li><%= call.position.name %></li>
-      <% end %>
-    <% end %>
-  </ul>
-<% end %>
 
+<div>
+  <% if @event.calls.length >= 1 %>
+    <table id="event-call-list">
+      <tr>
+        <th>Position</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+      </tr>
+      <% @event.calls.each do |call| %>
+        <% if call.valid? %>
+          <tr>
+            <td><%= call.position.name %></td>
+            <td><%= call.start_time.strftime("%B %e, %Y %l:%M%P") %></td>
+            <td><%= call.end_time.strftime("%B %e, %Y %l:%M%P") %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  <% end %>
+</div>
 
 <p>Don't see the position you're looking for?</p>
 <input type="button" name="new-position-button" value="Add a new position" id="new-position-button" />
@@ -43,14 +67,16 @@
 </div>
 
 <h5>Vendors</h5>
-<%= form_for [@event, @offer] do |f| %>
-  <div class="field">
-    <%= f.select(:user_id, @users.collect { |user| [user.full_name, user.id] }, { include_hidden: false }, { multiple: true }) %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+<div class="new-vendor-form">
+  <%= form_for [@event, @offer] do |f| %>
+    <div class="field">
+      <%= f.select(:user_id, @users.collect { |user| [user.full_name, user.id] }, { include_hidden: false }, { multiple: true }) %>
+    </div>
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
 
 <h6>Vendors emailed</h6>
 <table>
@@ -61,6 +87,6 @@
   <% @offers.each do |offer| %>
     <tr>
       <td><%= mail_to offer.user.email, offer.user.full_name %></td>
-      <td><%= offer.created_at.strftime("%l:%M %P %d %b %y") %></td>
+      <td><%= offer.created_at.strftime("%B %e, %Y %l:%M%P") %></td>
   <% end %>
 </ul>

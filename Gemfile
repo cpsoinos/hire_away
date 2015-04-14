@@ -20,7 +20,6 @@ group :development, :test do
   gem 'fuubar'
 end
 
-
 gem 'rspec-rails', group: [:development, :test]
 gem 'capybara', group: [:development, :test]
 gem 'launchy', group: [:development, :test]
@@ -29,8 +28,11 @@ gem 'valid_attribute', group: [:development, :test]
 gem 'shoulda-matchers', group: [:development, :test], require: false
 gem 'codeclimate-test-reporter', group: :test, require: nil
 gem 'devise'
-gem 'foundation-rails'
+gem 'foundation-rails', "5.5.1.0"
 gem 'money-rails'
 gem 'kaminari'
 gem 'country_state_select'
 gem 'sidekiq'
+gem 'sinatra', require: false
+gem 'slim'
+gem 'local_time'
