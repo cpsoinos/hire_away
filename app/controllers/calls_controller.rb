@@ -23,9 +23,28 @@ class CallsController < ApplicationController
     end
   end
 
+  def update
+    @event = Event.find(params[:event_id])
+    @call = Call.find(params[:id])
+    @call.update(call_params)
+    if @call.save
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Call updated!"
+          redirect_to event_path(@event)
+        end
+        format.js do
+          render :update
+        end
+      end
+    else
+      redirect :back
+    end
+  end
+
   private
 
   def call_params
-    params.require(:call).permit(:event, :position_id, :start_time, :end_time)
+    params.require(:call).permit(:event, :position_id, :start_time, :end_time, :user_id)
   end
 end

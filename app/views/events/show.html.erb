@@ -48,7 +48,7 @@
 <div>
   <% if !current_user.admin? %>
     <%= form_for [@event, @availability] do |f| %>
-      <% if @event.calls.length >= 1 %>
+      <% if @calls.length >= 1 %>
         <table id="event-call-list">
           <tr>
             <th>Position</th>
@@ -56,7 +56,7 @@
             <th>End Time</th>
             <th>Available?</th>
           </tr>
-          <% @event.calls.each do |call| %>
+          <% @calls.each do |call| %>
             <% if call.valid? %>
               <tr>
                 <td><%= call.position.name %></td>
@@ -80,13 +80,36 @@
           <th>Position</th>
           <th>Start Time</th>
           <th>End Time</th>
+          <th>Available Vendors</th>
+          <th>Assigned Vendor</th>
         </tr>
-        <% @event.calls.each do |call| %>
+        <% @calls.each do |call| %>
           <% if call.valid? %>
             <tr>
               <td><%= call.position.name %></td>
               <td><%= call.start_time.strftime("%B %e, %Y %l:%M%P") %></td>
               <td><%= call.end_time.strftime("%B %e, %Y %l:%M%P") %></td>
+              <td>
+                <ul>
+                  <% call.availabilities.each do |availability| %>
+                    <li><%= availability.offer.user.full_name %></li>
+                  <% end %>
+                </ul>
+              </td>
+              <td>
+                <p id="assigned-vendor-<%= call.id %>"><%= call.user.full_name if call.user %></p>
+                <div id="assign-vendor-form">
+                  <%= form_for [@event, call], remote: true do |f| %>
+                    <% call.errors.full_messages.each do |msg| %>
+                      <p><%= msg %></p>
+                    <% end %>
+                    <%= f.collection_select(:user_id, @users, :id, :full_name, prompt: true) %>
+                    <div class="actions" id="call-action-button2">
+                      <%= f.submit %>
+                    </div>
+                  <% end %>
+                </div>
+              </td>
             </tr>
           <% end %>
         <% end %>

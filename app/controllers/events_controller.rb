@@ -8,6 +8,7 @@ class EventsController < ApplicationController
 
   def show
     @event = Event.find(params[:id])
+    @calls = @event.calls
     @call = @event.calls.new
     @offer = @call.offers.new
     @positions = Position.all
