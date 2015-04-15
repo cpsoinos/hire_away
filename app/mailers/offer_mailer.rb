@@ -5,7 +5,7 @@ class OfferMailer < ApplicationMailer
     @offer = offer
     @user = offer.user
     @event = offer.event
-    @calls = offer.event.calls
+    @calls = offer.calls
     email_with_name = %("#{@user.full_name}" <#{@user.email}>)
     mail(to: email_with_name, subject: "New calls available")
   end

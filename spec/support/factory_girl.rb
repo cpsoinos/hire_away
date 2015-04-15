@@ -5,8 +5,8 @@ FactoryGirl.define do
     sequence(:email) { |n| "user#{n}@example.com" }
     password 'password'
     password_confirmation 'password'
-    first_name Faker::Name.first_name
-    last_name Faker::Name.last_name
+    sequence(:first_name) { |n| "User#{n}" }
+    sequence(:last_name) { |n| "Mc#{n}son" }
     street_address Faker::Address.street_address
     street_address_2 Faker::Address.secondary_address
     city Faker::Address.city
@@ -47,7 +47,7 @@ FactoryGirl.define do
 
   factory :position do
     sequence(:name) { |n| "Position#{n}" }
-    pay_rate_cents 15
+    pay_rate_cents 1500
   end
 
   factory :offer do

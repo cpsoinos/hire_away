@@ -9,28 +9,21 @@
     <div>
       <h2><%= @event.name %></h2>
       <h3>at <%= @event.venue.name %></h3>
-
-      <%= form_for @offer do |f| %>
-        <table>
+      <table>
+        <tr>
+          <th>Start Time</th>
+          <th>End Time</th>
+          <th>Position</th>
+        </tr>
+        <% @calls.each do |call| %>
           <tr>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Position</th>
-            <th>Check if available</th>
+            <td><%= call.start_time.strftime("%B %e, %Y %l:%M%P") %></td>
+            <td><%= call.end_time.strftime("%B %e, %Y %l:%M%P") %></td>
+            <td><%= call.position.name %></td>
           </tr>
-          <% @calls.each do |call| %>
-            <tr>
-              <td><%= call.start_time.strftime("%B %e, %Y %l:%M%P") %></td>
-              <td><%= call.end_time.strftime("%B %e, %Y %l:%M%P") %></td>
-              <td><%= call.position.name %></td>
-              <td><%= check_box_tag(:available) %></td>
-            </tr>
-          <% end %>
-        </table>
-        <div class="actions" id="venue-action-button">
-          <%= f.submit %>
-        </div>
-      <% end %>
+        <% end %>
+      </table>
+    </div>
     <p>Thanks!</p>
   </body>
 </html>

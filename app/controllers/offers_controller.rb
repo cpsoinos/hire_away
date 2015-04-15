@@ -24,11 +24,10 @@ class OffersController < ApplicationController
     end
   end
 
-  def update
-    binding.pry
-    @offer = 
-    @offer.update()
-  end
+  # def update
+  #   @offer =
+  #   @offer.update()
+  # end
 
   private
 
