@@ -1,29 +1,46 @@
 <h1>Events</h1>
 
-<%= button_to "Add new event", new_event_path, method: :get %>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Venue</th>
-    <th>City</th>
-    <th>State</th>
-  </tr>
+<% if current_user.admin? %>
+  <div>
+    <%= button_to "Add new event", new_event_path, method: :get %>
+  </div>
+<% end %>
 
-  <% @events.each do |event| %>
+<div>
+  <table>
     <tr>
-      <td><%= link_to event.name, event_path(event) %></td>
-      <td><%= event.venue.name %></td>
-      <td><%= event.venue.city %></td>
-      <td><%= event.venue.state %></td>
-      <td>
-        <%= button_to "Edit event", edit_event_path(event), method: :get %>
-      </td>
-      <td>
-        <%= button_to "Delete event", event_path(event),
-          method: :delete, action: :destroy,
-          data: { confirm: "Are you sure?" } %>
-      </td>
+      <th>Name</th>
+      <th>Venue</th>
+      <th>City</th>
+      <th>State</th>
     </tr>
-  <% end %>
-</table>
+    <% if current_user.admin? %>
+      <% @events.each do |event| %>
+        <tr>
+          <td><%= link_to event.name, event_path(event) %></td>
+          <td><%= event.venue.name %></td>
+          <td><%= event.venue.city %></td>
+          <td><%= event.venue.state %></td>
+          <td>
+            <%= button_to "Edit event", edit_event_path(event), method: :get %>
+          </td>
+          <td>
+            <%= button_to "Delete event", event_path(event),
+              method: :delete, action: :destroy,
+              data: { confirm: "Are you sure?" } %>
+          </td>
+        </tr>
+      <% end %>
+    <% elsif user_signed_in? %>
+      <% current_user.calls.each do |call| %>
+        <tr>
+          <td><%= link_to call.event.name, event_path(call.event) %></td>
+          <td><%= call.event.venue.name %></td>
+          <td><%= call.event.venue.city %></td>
+          <td><%= call.event.venue.state %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </table>
+</div>

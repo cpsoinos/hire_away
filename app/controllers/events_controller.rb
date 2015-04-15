@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorize_admin!, except: [:show]
+  before_action :authorize_admin!, except: [:index, :show]
 
   def index
     @events = Event.order("start_time ASC").page(params[:page])

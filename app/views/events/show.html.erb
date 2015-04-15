@@ -17,9 +17,9 @@
     method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>
 <% end %>
 
-<h5>Calls</h5>
 <div>
   <% if current_user.admin? %>
+    <h5>Calls</h5>
     <input type="button" name="add-position-button" value="Add Position" id="add-position-button" />
     <div id="add-position-menu">
       <%= form_for [@event, @call], remote: true do |f| %>
@@ -47,30 +47,46 @@
 
 <div>
   <% if !current_user.admin? %>
-    <%= form_for [@event, @availability] do |f| %>
-      <% if @calls.length >= 1 %>
-        <table id="event-call-list">
-          <tr>
-            <th>Position</th>
-            <th>Start Time</th>
-            <th>End Time</th>
-            <th>Available?</th>
-          </tr>
-          <% @calls.each do |call| %>
-            <% if call.valid? %>
-              <tr>
-                <td><%= call.position.name %></td>
-                <td><%= call.start_time.strftime("%B %e, %Y %l:%M%P") %></td>
-                <td><%= call.end_time.strftime("%B %e, %Y %l:%M%P") %></td>
-                <td><%= f.check_box :available, {}, true, false %></td>
-                <%= f.hidden_field :call_id, value: call.id %>
-              </tr>
+    <% if @calls.length >= 1 %>
+      <% if @event.offers.any? { |offer| offer.user == current_user } %>
+        <%= form_for [@event, @availability] do |f| %>
+          <table id="event-call-list">
+            <tr>
+              <th>Position</th>
+              <th>Start Time</th>
+              <th>End Time</th>
+              <div class="available-box">
+                <th>Available?</th>
+              </div>
+            </tr>
+            <% @calls.each do |call| %>
+              <% if call.valid? %>
+                <% if call.user == nil || call.user == current_user %>
+                  <tr>
+                    <td><%= call.position.name %></td>
+                    <td><%= call.start_time.strftime("%B %e, %Y %l:%M%P") %></td>
+                    <td><%= call.end_time.strftime("%B %e, %Y %l:%M%P") %></td>
+                    <% unless call.availabilities.any? { |a| a.offer.user == current_user } || call.user == current_user %>
+                      <div class="available-box">
+                        <td>
+                          <%= f.check_box :available, {}, true, false %>
+                          <%= f.hidden_field :call_id, value: call.id %>
+                        </td>
+                      </div>
+                    <% end %>
+                    <% if call.user == current_user %>
+                      <% binding.pry %>
+                      <td class="confirmed">Confirmed</td>
+                    <% end %>
+                  </tr>
+                <% end %>
+              <% end %>
             <% end %>
-          <% end %>
-        </table>
-        <div class="actions">
-          <%= f.submit %>
-        </div>
+          </table>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   <% else %>
