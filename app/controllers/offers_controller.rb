@@ -1,4 +1,5 @@
 class OffersController < ApplicationController
+  before_action :authorize_admin!
 
   def new
     @offer = Offer.new

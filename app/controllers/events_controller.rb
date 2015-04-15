@@ -1,4 +1,7 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_admin!, except: [:show]
+
   def index
     @events = Event.order("start_time ASC").page(params[:page])
   end
@@ -11,6 +14,7 @@ class EventsController < ApplicationController
     @position = @event.positions.new
     @users = User.order("last_name ASC")
     @offers = @event.offers.order("created_at ASC")
+    @availability = @offer.availabilities.new
   end
 
   def new

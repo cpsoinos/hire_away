@@ -1,4 +1,5 @@
 class PositionsController < ApplicationController
+  before_action :authorize_admin!
 
   def index
     @positions = Position.all

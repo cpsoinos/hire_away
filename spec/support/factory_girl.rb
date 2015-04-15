@@ -27,7 +27,7 @@ FactoryGirl.define do
     state Faker::Address.state_abbr
     zip_code Faker::Address.zip
     phone Faker::PhoneNumber.cell_phone
-    admin true
+    role "admin"
   end
 
   factory :event do

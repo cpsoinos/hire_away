@@ -16,4 +16,20 @@ class ApplicationController < ActionController::Base
       :phone
     ]
   end
+
+  def not_found
+    raise ActionController::RoutingError.new("Not Found")
+  end
+
+  def authorize_user!
+    unless current_user.admin? || current_user == User.find(params[:id])
+      not_found
+    end
+  end
+
+  def authorize_admin!
+    unless current_user.admin?
+      not_found
+    end
+  end
 end
