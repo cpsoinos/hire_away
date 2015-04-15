@@ -1,0 +1,12 @@
+Hi <%= @user.first_name %>,
+
+We have new calls available:
+
+<%= @event.name %> at <%= @event.venue %>
+  <% @calls.each do |call| %>
+    <%= call.start_time %> to <%= call.end_time %>: <%= call.position.name %>
+  <% end %>
+
+Please let me know if you want to work on any of these dates.
+
+Thank you!

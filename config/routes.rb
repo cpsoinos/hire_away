@@ -41,4 +41,6 @@ Rails.application.routes.draw do
   resources :calls
   resources :offers
 
+  get 'mailer(/:action(/:id(.:format)))' => 'mailer#:action'
+
 end

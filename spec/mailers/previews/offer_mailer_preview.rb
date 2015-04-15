@@ -1,5 +1,4 @@
+# Preview all emails at http://localhost:3000/rails/mailers/offer_mailer
 class OfferMailerPreview < ActionMailer::Preview
-  def sample_mail_preview
-    OfferMailer.new_offer(Offer.first)
-  end
+
 end

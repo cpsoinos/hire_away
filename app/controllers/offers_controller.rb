@@ -17,11 +17,17 @@ class OffersController < ApplicationController
     else
       @offers.each do |offer|
         offer.save
-        OfferWorker.perform_async(offer.id)
+        OfferMailer.offer_email(offer).deliver_later
       end
       flash[:notice] = "Offers sent!"
       redirect_to event_path(@event)
     end
+  end
+
+  def update
+    binding.pry
+    @offer = 
+    @offer.update()
   end
 
   private
