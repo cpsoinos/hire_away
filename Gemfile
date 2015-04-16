@@ -40,3 +40,4 @@ end
 
 ruby "2.2.0"
 gem 'puma'
+gem 'google-webfonts-rails'

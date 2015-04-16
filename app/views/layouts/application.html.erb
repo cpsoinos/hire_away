@@ -2,9 +2,12 @@
 <html>
 <head>
   <title>HireAway</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag "vendor/modernizr" %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= google_webfonts_init({
+    google: ['Rock Salt']
+  }) %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
@@ -36,9 +39,7 @@
     </div>
   <%- end -%>
 
-  <div class="row">
-    <%= yield %>
-  </div>
+  <%= yield %>
 
   <%= javascript_include_tag 'application' %>
   <%= yield :extra_footer %>
