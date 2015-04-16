@@ -1,4 +1,5 @@
 class VenuesController < ApplicationController
+  before_action :authorize_admin!
 
   def index
     @venues = Venue.order("name ASC").page(params[:page])

@@ -15,5 +15,6 @@
 //= require foundation
 //= require_tree .
 //= require country_state_select
+//= require local_time
 
-$(function(){ $(document).foundation(); });
+$(document).foundation();

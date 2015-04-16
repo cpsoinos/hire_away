@@ -1,16 +1,24 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :authorize_admin!, except: [:index, :show]
+
   def index
     @events = Event.order("start_time ASC").page(params[:page])
+    pending_offers = []
+    current_user.offers.each { |o| pending_offers << o.event.calls.where(user: nil) }
+    @pending_offers = pending_offers.flatten.uniq { |c| c.event_id }
   end
 
   def show
     @event = Event.find(params[:id])
+    @calls = @event.calls
     @call = @event.calls.new
     @offer = @call.offers.new
     @positions = Position.all
     @position = @event.positions.new
     @users = User.order("last_name ASC")
     @offers = @event.offers.order("created_at ASC")
+    @availability = @offer.availabilities.new
   end
 
   def new

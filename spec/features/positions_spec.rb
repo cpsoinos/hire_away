@@ -18,6 +18,8 @@ feature "admin adds positions to an event", %Q{
     # coffeescript, not needed for test:
     # click_button("Add position")
     select position.name, from: "call_position_id"
+    fill_in("call_start_time", with: DateTime.now)
+    fill_in("call_end_time", with: DateTime.now)
     click_button("Create Call")
 
     expect(page).to have_content(position.name)

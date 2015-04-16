@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root "events#index"
+  root "homes#index"
   devise_for :users
 
   resources :events, only: [
@@ -14,8 +14,11 @@ Rails.application.routes.draw do
   ]
 
   resources :events, only: [:show] do
-    resources :calls
+    resources :calls do
+      resources :availabilities
+    end
     resources :offers
+    resources :availabilities
   end
 
   resources :venues, only: [
@@ -38,7 +41,11 @@ Rails.application.routes.draw do
     :destroy
   ]
 
-  resources :calls
+  resources :calls do
+    resources :availabilities
+  end
   resources :offers
+
+  get 'mailer(/:action(/:id(.:format)))' => 'mailer#:action'
 
 end

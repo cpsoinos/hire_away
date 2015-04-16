@@ -5,8 +5,8 @@ FactoryGirl.define do
     sequence(:email) { |n| "user#{n}@example.com" }
     password 'password'
     password_confirmation 'password'
-    first_name Faker::Name.first_name
-    last_name Faker::Name.last_name
+    sequence(:first_name) { |n| "User#{n}" }
+    sequence(:last_name) { |n| "Mc#{n}son" }
     street_address Faker::Address.street_address
     street_address_2 Faker::Address.secondary_address
     city Faker::Address.city
@@ -16,7 +16,7 @@ FactoryGirl.define do
   end
 
   factory :admin, class: User do
-    sequence(:email) { |n| "user#{n}@example.com" }
+    sequence(:email) { |n| "admin#{n}@example.com" }
     password 'password'
     password_confirmation 'password'
     first_name Faker::Name.first_name
@@ -27,7 +27,7 @@ FactoryGirl.define do
     state Faker::Address.state_abbr
     zip_code Faker::Address.zip
     phone Faker::PhoneNumber.cell_phone
-    admin true
+    role "admin"
   end
 
   factory :event do
@@ -47,6 +47,20 @@ FactoryGirl.define do
 
   factory :position do
     sequence(:name) { |n| "Position#{n}" }
-    pay_rate_cents 15
+    pay_rate_cents 1500
   end
+
+  factory :offer do
+    user
+    event
+  end
+
+  factory :call do
+    start_time Faker::Time.forward(23, :morning)
+    end_time Faker::Time.forward(25, :evening)
+    event
+    position
+    user
+  end
+
 end

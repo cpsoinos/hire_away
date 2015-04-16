@@ -1,4 +1,5 @@
 class OffersController < ApplicationController
+  before_action :authorize_admin!
 
   def new
     @offer = Offer.new
@@ -6,26 +7,27 @@ class OffersController < ApplicationController
 
   def create
     @event = Event.find(params[:event_id])
-    vendors = params[:offer][:user_id]
-    offer_to(vendors)
-    redirect_to event_path(@event)
-    # if @offer.save
-    #   flash[:notice] = "Offers sent!"
-    #   redirect_to :show
-    # else
-    #   render :show
-    # end
+    @offers = []
+    offer_params[:user_id].each do |id|
+      vendor = User.find(id)
+      @offer = vendor.offers.new(event: @event)
+      @offers << @offer
+    end
+    if @offers.any? { |offer| !offer.valid? }
+      redirect_to :back
+    else
+      @offers.each do |offer|
+        offer.save
+        OfferMailer.offer_email(offer).deliver_later
+      end
+      flash[:notice] = "Offers sent!"
+      redirect_to event_path(@event)
+    end
   end
 
   private
 
   def offer_params
-    params.require(:offer).permit(:user_id)
-  end
-
-  def offer_to(vendors)
-    vendors.each do |vendor|
-      @offer = Offer.create(user: User.find(vendor), event: Event.find(params[:event_id]))
-    end
+    params.require(:offer).permit(user_id: [])
   end
 end
