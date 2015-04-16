@@ -1,10 +1,6 @@
 class CallsController < ApplicationController
   before_action :authorize_admin!
 
-  def index
-    @calls = Call.all
-  end
-
   def create
     @event = Event.find(params[:event_id])
     @call = @event.calls.new(call_params)

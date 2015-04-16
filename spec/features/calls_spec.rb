@@ -23,4 +23,17 @@ feature "admin sends out calls for an event", %Q{
 
     expect(page).to have_content(position.name)
   end
+
+  scenario "admin manually assigns a user to a call" do
+    visit event_path(event)
+    select(position.name, from: "call_position_id")
+    fill_in("call_start_time", with: DateTime.now)
+    fill_in("call_end_time", with: DateTime.now)
+    click_button "Create Call"
+    # javascripted... hard coding for now
+    event.calls.first.update(user: user)
+    visit event_path(event)
+
+    expect(page).to have_content(user.full_name)
+  end
 end
