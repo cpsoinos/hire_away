@@ -33,3 +33,7 @@ gem 'money-rails'
 gem 'kaminari'
 gem 'country_state_select'
 gem 'local_time'
+
+group :production do
+  gem 'rails_12factor'
+end
