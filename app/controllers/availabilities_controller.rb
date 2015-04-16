@@ -1,6 +1,4 @@
 class AvailabilitiesController < ApplicationController
-  # before_action :authorize_user!
-
   def new
     @availability = Availability.new
   end
@@ -9,7 +7,6 @@ class AvailabilitiesController < ApplicationController
     @offer = current_user.offers.find_by(event_id: params[:event_id])
     @event = @offer.event
     @availabilities = availability_params[:available].each_index { |i| @offer.availabilities.create(available: availability_params[:available][i], call_id: availability_params[:call_id][i]) }
-    binding.pry
     if !@availabilities.any? { |a| "true" }
       redirect_to :back
     else

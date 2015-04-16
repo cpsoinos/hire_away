@@ -9,14 +9,14 @@ feature "guest views list of events", %Q{
   let!(:event) { FactoryGirl.create(:event) }
 
   scenario "guest goes to home page" do
-    visit root_path
+    visit events_path
 
     expect(page).to have_content("You need to sign in or sign up before continuing")
     expect(page).not_to have_content(event.name)
   end
 
   scenario "guest cannot view event details page" do
-    visit root_path
+    visit events_path
 
     expect(page).not_to have_content(event.name)
   end
@@ -36,7 +36,7 @@ feature "user views list of events", %Q{
 
   scenario "user goes to home page" do
     sign_in user
-    visit root_path
+    visit events_path
 
     expect(page).to have_content("Events")
     expect(page).not_to have_content(event.name)
@@ -44,7 +44,7 @@ feature "user views list of events", %Q{
 
   scenario "user goes to home page after being assigned to an event" do
     sign_in call.user
-    visit root_path
+    visit events_path
 
     expect(page).to have_link(call.event.name)
     expect(page).to have_content(call.event.venue.name)
@@ -73,7 +73,7 @@ feature "user views list of events", %Q{
       start_time: DateTime.now,
       end_time: DateTime.now
     )
-    
+
     visit event_path(offer.event)
 
 
