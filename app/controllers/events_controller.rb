@@ -4,6 +4,13 @@ class EventsController < ApplicationController
 
   def index
     @events = Event.order("start_time ASC").page(params[:page])
+    # @pending_offers = current_user.offers.map { |o| o.event.calls.where(user: nil) }
+    # binding.pry
+
+    pending_offers = []
+    current_user.offers.each { |o| pending_offers << o.event.calls.where(user: nil) }
+    @pending_offers = pending_offers.flatten.uniq { |c| c.event_id }
+    # @pending_offers = (@pending_offers.uniq { |o| o.event_id }).flatten
   end
 
   def show

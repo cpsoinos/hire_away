@@ -25,11 +25,6 @@ class OffersController < ApplicationController
     end
   end
 
-  # def update
-  #   @offer =
-  #   @offer.update()
-  # end
-
   private
 
   def offer_params

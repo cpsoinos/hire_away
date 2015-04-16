@@ -48,7 +48,7 @@
 <div>
   <% if !current_user.admin? %>
     <% if @calls.length >= 1 %>
-      <% if @event.offers.any? { |offer| offer.user == current_user } %>
+      <% if @event.calls.any? { |call| call.user == current_user } || @event.offers.any? { |offer| offer.user == current_user } %>
         <%= form_for [@event, @availability] do |f| %>
           <table id="event-call-list">
             <tr>
@@ -66,16 +66,15 @@
                     <td><%= call.position.name %></td>
                     <td><%= call.start_time.strftime("%B %e, %Y %l:%M%P") %></td>
                     <td><%= call.end_time.strftime("%B %e, %Y %l:%M%P") %></td>
-                    <% unless call.availabilities.any? { |a| a.offer.user == current_user } || call.user == current_user %>
+                    <% unless call.availabilities.any? { |a| a.offer && a.offer.user == current_user } || call.user == current_user %>
                       <div class="available-box">
                         <td>
-                          <%= f.check_box :available, {}, true, false %>
-                          <%= f.hidden_field :call_id, value: call.id %>
+                          <%= f.check_box :available, { multiple: true }, true, false %>
+                          <%= f.hidden_field :call_id, multiple: true, value: call.id %>
                         </td>
                       </div>
                     <% end %>
                     <% if call.user == current_user %>
-                      <% binding.pry %>
                       <td class="confirmed">Confirmed</td>
                     <% end %>
                   </tr>
@@ -108,7 +107,9 @@
               <td>
                 <ul>
                   <% call.availabilities.each do |availability| %>
-                    <li><%= availability.offer.user.full_name %></li>
+                    <% if availability.offer %>
+                      <li><%= availability.offer.user.full_name %></li>
+                    <% end %>
                   <% end %>
                 </ul>
               </td>

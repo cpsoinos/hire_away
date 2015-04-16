@@ -54,4 +54,13 @@ FactoryGirl.define do
     user
     event
   end
+
+  factory :call do
+    start_time Faker::Time.forward(23, :morning)
+    end_time Faker::Time.forward(25, :evening)
+    event
+    position
+    user
+  end
+
 end
