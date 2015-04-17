@@ -1,64 +1,74 @@
-<h1>Events</h1>
-
-
-<% if current_user.admin? %>
-  <div>
-    <%= button_to "Add new event", new_event_path, method: :get %>
+<div class="container row">
+  <div class="small-6 columns title">
+    <h1>Events</h1>
   </div>
-<% end %>
 
-<div>
-  <table>
-    <tr>
-      <th>Name</th>
-      <th>Venue</th>
-      <th>City</th>
-      <th>State</th>
-    </tr>
-    <% if current_user.admin? %>
-      <% @events.each do |event| %>
-        <tr>
-          <td><%= link_to event.name, event_path(event) %></td>
-          <td><%= event.venue.name %></td>
-          <td><%= event.venue.city %></td>
-          <td><%= event.venue.state %></td>
-          <td>
-            <%= button_to "Edit event", edit_event_path(event), method: :get %>
-          </td>
-          <td>
-            <%= button_to "Delete event", event_path(event),
-              method: :delete, action: :destroy,
-              data: { confirm: "Are you sure?" } %>
-          </td>
-        </tr>
-      <% end %>
-    <% elsif user_signed_in? %>
-      <tr>
-        <td>My Events</td>
+  <% if current_user.admin? %>
+    <div class="small-6 columns">
+      <div id="new-event-button-container">
+        <%= button_to "Add new event", new_event_path, class: "button radius", id: "new-event-button", method: :get %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="small-12 columns events-table">
+    <table>
+      <tr class="header">
+        <th>Name</th>
+        <th>Venue</th>
+        <th>City</th>
+        <th>State</th>
       </tr>
-      <% current_user.calls.each do |call| %>
-        <tr>
-          <td><%= link_to call.event.name, event_path(call.event) %></td>
-          <td><%= call.event.venue.name %></td>
-          <td><%= call.event.venue.city %></td>
-          <td><%= call.event.venue.state %></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td>My Pending Offers</td>
-      </tr>
-      <% if @pending_offers %>
-        <% @pending_offers.each do |offer| %>
+      <% if current_user.admin? %>
+        <% @events.each do |event| %>
           <tr>
-            <td><%= link_to offer.event.name, event_path(offer.event) %></td>
-            <td><%= offer.event.venue.name %></td>
-            <td><%= offer.event.venue.city %></td>
-            <td><%= offer.event.venue.state %></td>
+            <td><%= link_to event.name, event_path(event) %></td>
+            <td><%= event.venue.name %></td>
+            <td><%= event.venue.city %></td>
+            <td><%= event.venue.state %></td>
+            <td>
+              <%= button_to "Edit event", edit_event_path(event), class: "radius-button", method: :get %>
+            </td>
+            <td>
+              <%= button_to "Delete event", event_path(event), class: "radius-button",
+                method: :delete, action: :destroy,
+                data: { confirm: "Are you sure?" } %>
+            </td>
           </tr>
         <% end %>
+      <% elsif user_signed_in? %>
+        <tr>
+          <td>My Events</td>
+        </tr>
+        <% current_user.calls.each do |call| %>
+          <tr>
+            <td><%= link_to call.event.name, event_path(call.event) %></td>
+            <td><%= call.event.venue.name %></td>
+            <td><%= call.event.venue.city %></td>
+            <td><%= call.event.venue.state %></td>
+          </tr>
+        <% end %>
+        <tr>
+          <td>My Pending Offers</td>
+        </tr>
+        <% if @pending_offers %>
+          <% @pending_offers.each do |offer| %>
+            <tr>
+              <td><%= link_to offer.event.name, event_path(offer.event) %></td>
+              <td><%= offer.event.venue.name %></td>
+              <td><%= offer.event.venue.city %></td>
+              <td><%= offer.event.venue.state %></td>
+            </tr>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
-  </table>
+    </table>
+  </div>
 </div>
 
-<iframe src="https://www.google.com/calendar/embed?showCalendars=0&amp;height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;src=hpn70efsttvg2ii168k3mcb6mo%40group.calendar.google.com&amp;color=%23853104&amp;ctz=America%2FNew_York" class="events-calendar"></iframe>
+<div class="calendar">
+  <iframe src="https://www.google.com/calendar/embed?showCalendars=0&amp;
+    height=600&amp;wkst=1&amp;bgcolor=%23FFFFFF&amp;
+    src=hpn70efsttvg2ii168k3mcb6mo%40group.calendar.google.com&amp;
+    color=%23853104&amp;ctz=America%2FNew_York" class="events-calendar"></iframe>
+</div>

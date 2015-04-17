@@ -1,7 +1,14 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "utilities/variables";
 
+body {
+  background: url(../assets/background-1.svg) no-repeat center center fixed;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
 
 #new-venue-form {
   display: none;
@@ -14,6 +21,64 @@
 #new-position-form {
   display: none;
 }
+
+.title {
+  margin-top: 2.8125rem;
+  height: auto;
+
+  h1 {
+  color: $main-color-5;
+  }
+}
+
+#new-event-button-container {
+  margin-top: 6.8125rem;
+}
+
+#new-event-button {
+  background: none;
+  color: $main-color-5;
+  border: 1px solid;
+  border-color: $main-color-5;
+}
+
+.events-table {
+  background: none;
+  margin-top: 0.5rem;
+
+  th {
+    color: $main-color-5;
+    text-align: center;
+  }
+
+  tr td, a {
+    color: $main-color-5;
+
+    & :hover {
+      color: orange;
+    }
+  }
+
+  table {
+    background: none;
+
+    input {
+      background: none;
+      color: $main-color-5;
+      border: 1px solid;
+      border-color: $main-color-5;
+      border-radius: 0.5em;
+    }
+
+    & tr.even, & tr.alt, & tr:nth-of-type(even) {
+      background-color: rgba(0, 34, 43, 0.5);
+      /* opacity: 0.5; */
+      /* filter: alpha(opacity=50); */
+    }
+  }
+}
+
+
 
 iframe.events-calendar {
   border: none;

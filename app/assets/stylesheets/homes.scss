@@ -1,17 +1,23 @@
 @import "utilities/variables";
 
+.flash {
+  text-align: center;
+  font-family: 'Rock Salt', cursive;
+  color: $main-color-5;
+  font-size: 0.8rem;
+}
+
 .valign-middle {
     display: table;
-}
 
-.valign-middle .columns {
-    display: table-cell;
-    vertical-align: middle;
-}
+    > .columns {
+        display: table-cell;
+        vertical-align: middle;
+    }
 
-.valign-middle .columns,
-.valign-middle [class*="column"] + [class*="column"]:last-child {
-    float: none;
+    > .columns, > [class*="column"] + [class*="column"]:last-child {
+        float: none;
+    }
 }
 
 .top-bar {
@@ -46,7 +52,7 @@
   background: url(../assets/background-1.svg) no-repeat center center fixed;
   background-size: cover;
   width: 100%;
-  height: 100%;
+  height: auto;
 
   h1 {
     font-family: 'Rock Salt', cursive;
@@ -55,38 +61,22 @@
 }
 
 .hire {
-  width: 50%;
+  height: 100%;
 
   h1 {
     color: $main-color-5;
+    text-align: right;
   }
 }
 
 .away {
   margin-top: 4rem;
-  width: 50%;
+  height: 100%;
+  margin-left: -2rem;
+  margin-top: 10.5rem;
 
   h1 {
     color: $main-color-5;
-  }
-}
-
-#hire {
-  text-align: right;
-}
-
-#away {
-  text-align: left;
-  margin-left: -2rem;
-  margin-top: 10.5rem;
-}
-
-.landing-mid-section {
-  width: 100%;
-  height: 30rem;
-
-  div.columns {
-    width: 50%;
-    text-align: center;
+    text-align: left;
   }
 }
