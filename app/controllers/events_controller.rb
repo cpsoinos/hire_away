@@ -31,11 +31,15 @@ class EventsController < ApplicationController
     @venue = Venue.find(params[:event][:venue_id])
     @event = @venue.events.new(event_params)
     @venues = Venue.order("name ASC")
-    if @event.save
-      flash[:notice] = "Event created!"
-      redirect_to event_path(@event)
-    else
-      render :new
+    respond_to do |format|
+      if @event.save
+        @event.add_to_calendar(@event, current_user)
+        format.html { redirect_to event_path(@event), notice: "Event created!"}
+        format.json { render json: @event, status: :created, location: @event }
+      else
+        format.html { render :new }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
     end
   end
 

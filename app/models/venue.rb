@@ -4,4 +4,8 @@ class Venue < ActiveRecord::Base
   validates :name, presence: true
   validates :city, presence: true
   validates :state, presence: true
+
+  def location
+    "#{street_address}, #{city}, #{state}"
+  end
 end
