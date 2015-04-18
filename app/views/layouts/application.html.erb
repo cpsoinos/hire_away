@@ -2,33 +2,43 @@
 <html>
 <head>
   <title>HireAway</title>
-  <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= csrf_meta_tags %>
   <%= javascript_include_tag "vendor/modernizr" %>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= google_webfonts_init({
+    google: ['Rock Salt']
+  }) %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 <body>
 
-  <nav class="top-bar">
-    <ul class="title-area">
-      <li class="name">
-        <h1><a href="/">HireAway</a></h1>
-      </li>
-    </ul>
-
-    <section class="top-bar-section">
-      <ul class="right">
-        <%- if current_user -%>
-          <li><%= link_to "Events", events_path %></li>
-          <li><%= link_to "Venues", venues_path %></li>
-          <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
-        <%- else -%>
-          <li><%= link_to 'Sign Up', new_user_registration_path %></li>
-          <li><%= link_to 'Sign In', new_user_session_path %></li>
-        <%- end -%>
+  <div class="fixed">
+    <nav class="top-bar">
+      <ul class="title-area">
+        <li class="name">
+          <h1>
+            <a href="/" id="nav-home">
+              <span id="hire-home">HIRE</span>
+              <span id="away-home">AWAY</span>
+            </a>
+          </h1>
+        </li>
       </ul>
-    </section>
-  </nav>
+
+      <section class="top-bar-section">
+        <ul class="right">
+          <%- if current_user -%>
+            <li><%= link_to "Events", events_path %></li>
+            <li><%= link_to "Venues", venues_path %></li>
+            <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+          <%- else -%>
+            <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+            <li><%= link_to 'Sign In', new_user_session_path %></li>
+          <%- end -%>
+        </ul>
+      </section>
+    </nav>
+  </div>
 
   <%- flash.each do |key, value| -%>
     <div class="flash flash-<%= key %>">
@@ -36,9 +46,7 @@
     </div>
   <%- end -%>
 
-  <div class="row">
-    <%= yield %>
-  </div>
+  <%= yield %>
 
   <%= javascript_include_tag 'application' %>
   <%= yield :extra_footer %>
