@@ -3,13 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "utilities/variables";
 
-body {
-  background: url(../assets/background-1.svg) no-repeat center center fixed;
-  background-size: cover;
-  width: 100%;
-  height: 100%;
-}
-
 #new-venue-form {
   display: none;
 }
