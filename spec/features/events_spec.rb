@@ -174,7 +174,7 @@ feature "admin views list of events", %Q{
     expect(page).to have_content("Venue created!")
   end
 
-  scenario "admin creates a new event after creating a new venue" do
+  scenario "admin creates a new event after creating a new venue", focus: true, js: true do
     visit new_event_path
     click_button "Create a new venue"
     fill_in "venue_name", with: "GitHub"
