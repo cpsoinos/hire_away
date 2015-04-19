@@ -35,7 +35,6 @@ class Event < ActiveRecord::Base
       :body => JSON.dump(event),
       :headers => {'Content-Type' => 'application/json'}
     )
-    binding.pry
     print result.data.id
   end
 end

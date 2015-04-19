@@ -36,10 +36,10 @@
 <!-- About section starts -->
 <div class="row" id="about-description">
   <div class="small-12-columns">
-    <div class="small-6 columns" id="about">
+    <div class="small-6 columns about">
       <h5>About</h5>
     </div>
-    <div class="small-6 columns" id="description">
+    <div class="small-6 columns description">
       <p><%= @event.description %></p>
     </div>
   </div>
@@ -48,32 +48,34 @@
 
 <!-- Positions section starts -->
 <div class="row" id="positions">
-  <div>
-    <% if current_user.admin? %>
-      <h5>Calls</h5>
-      <input type="button" name="add-position-button" value="Add Position" id="add-position-button" />
-      <div id="add-position-menu">
-        <%= form_for [@event, @call], remote: true do |f| %>
-          <div class="field">
-            <%= f.collection_select(:position_id, @positions, :id, :name, prompt: true) %>
-          </div>
+  <div class="small-6 columns">
+    <div class="small-6 columns about">
+      <% if current_user.admin? %>
+        <h5>Calls</h5>
+        <input type="button" name="add-position-button" value="Add Position" id="add-position-button" />
+        <div id="add-position-menu">
+          <%= form_for [@event, @call], remote: true do |f| %>
+            <div class="field">
+              <%= f.collection_select(:position_id, @positions, :id, :name, prompt: true) %>
+            </div>
 
-          <div class="field">
-            <%= f.label :start_time %><br>
-            <%= f.datetime_local_field :start_time %>
-          </div>
+            <div class="field">
+              <%= f.label :start_time %><br>
+              <%= f.datetime_local_field :start_time %>
+            </div>
 
-          <div class="field">
-            <%= f.label :end_time %><br>
-            <%= f.datetime_local_field :end_time %>
-          </div>
+            <div class="field">
+              <%= f.label :end_time %><br>
+              <%= f.datetime_local_field :end_time %>
+            </div>
 
-          <div class="actions" id="call-action-button">
-            <%= f.submit %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
+            <div class="actions" id="call-action-button">
+              <%= f.submit %>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
 <!-- Positions section ends -->

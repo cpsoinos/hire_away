@@ -13,10 +13,10 @@ $('#add-position-button').click ->
     return
   return
 
-$('#add-position-submit-button').click ->
-  $('#add-position-menu').toggle 'slow', ->
-    return
-  return
+# $('#add-position-submit-button').click ->
+#   $('#add-position-menu').toggle 'slow', ->
+#     return
+#   return
 
 $('#call-action-button').click ->
   $('#add-position-menu').toggle 'slow', ->
