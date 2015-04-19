@@ -20,6 +20,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'faker'
   gem 'fuubar'
+  gem 'rails-erd'
 end
 
 gem 'rspec-rails', group: [:development, :test]

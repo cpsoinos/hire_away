@@ -38,5 +38,4 @@ class Event < ActiveRecord::Base
     binding.pry
     print result.data.id
   end
-
 end

@@ -19,6 +19,10 @@ class EventsController < ApplicationController
     @users = User.order("last_name ASC")
     @offers = @event.offers.order("created_at ASC")
     @availability = @offer.availabilities.new
+    @google_maps_url = %Q{
+      https://www.google.com/maps/embed/v1/place?key=
+      #{ENV["GOOGLE_MAPS_API_KEY"]}&q=#{@event.venue.parse_for_google_maps}
+    }
   end
 
   def new
