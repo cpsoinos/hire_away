@@ -19,6 +19,10 @@ class EventsController < ApplicationController
     @users = User.order("last_name ASC")
     @offers = @event.offers.order("created_at ASC")
     @availability = @offer.availabilities.new
+    @google_maps_url = %Q{
+      https://www.google.com/maps/embed/v1/place?key=
+      #{ENV["GOOGLE_MAPS_API_KEY"]}&q=#{@event.venue.parse_for_google_maps}
+    }
   end
 
   def new
@@ -31,11 +35,15 @@ class EventsController < ApplicationController
     @venue = Venue.find(params[:event][:venue_id])
     @event = @venue.events.new(event_params)
     @venues = Venue.order("name ASC")
-    if @event.save
-      flash[:notice] = "Event created!"
-      redirect_to event_path(@event)
-    else
-      render :new
+    respond_to do |format|
+      if @event.save
+        @event.add_to_calendar(@event, current_user)
+        format.html { redirect_to event_path(@event), notice: "Event created!"}
+        format.json { render json: @event, status: :created, location: @event }
+      else
+        format.html { render :new }
+        format.json { render json: @event.errors, status: :unprocessable_entity }
+      end
     end
   end
 

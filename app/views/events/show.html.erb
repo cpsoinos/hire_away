@@ -1,49 +1,82 @@
-<h1><%= @event.name %></h1>
-
-<p><%= @event.start_time.strftime("%B %e, %Y %l:%M%P") %> - <%= @event.end_time.strftime("%B %e, %Y %l:%M%P") %></p>
-
-<p><%= @event.venue.name %></p>
-<p><%= @event.venue.street_address %></p>
-<% if @event.venue.street_address_2 %>
-  <p><%= @event.venue.street_address_2 %></p>
-<% end %>
-<p><%= "#{@event.venue.city}, #{@event.venue.state}" %></p>
-<br>
-<p>About this event: <%= @event.description %></p>
-
-<% if current_user.admin? %>
-  <%= button_to "Edit event", edit_event_path(@event), method: :get %>
-  <%= button_to "Delete event", event_path(@event),
-    method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>
-<% end %>
-
-<div>
-  <% if current_user.admin? %>
-    <h5>Calls</h5>
-    <input type="button" name="add-position-button" value="Add Position" id="add-position-button" />
-    <div id="add-position-menu">
-      <%= form_for [@event, @call], remote: true do |f| %>
-        <div class="field">
-          <%= f.collection_select(:position_id, @positions, :id, :name, prompt: true) %>
-        </div>
-
-        <div class="field">
-          <%= f.label :start_time %><br>
-          <%= f.datetime_local_field :start_time %>
-        </div>
-
-        <div class="field">
-          <%= f.label :end_time %><br>
-          <%= f.datetime_local_field :end_time %>
-        </div>
-
-        <div class="actions" id="call-action-button">
-          <%= f.submit %>
+<!-- Event and venue section starts -->
+<div class="row top-row">
+  <div class="small-12 columns">
+    <div class="small-6 columns show-title">
+      <h1><%= @event.name %></h1>
+      <p class="event-details">
+        <%= @event.start_time.strftime("%B %e, %Y %l:%M%P") %>
+         - <%= @event.end_time.strftime("%B %e, %Y %l:%M%P") %>
+       </p>
+      <% if current_user.admin? %>
+        <div id="buttons-for-event">
+          <%= button_to "Edit event", edit_event_path(@event),
+            method: :get, class: "button radius event-edit-delete" %>
+          <%= button_to "Delete event", event_path(@event),
+            method: :delete, action: :destroy,
+            data: { confirm: "Are you sure?" },
+            class: "button radius event-edit-delete", id: "delete-show" %>
         </div>
       <% end %>
     </div>
-  <% end %>
+    <div class="small-6 columns venue-info">
+      <iframe class="map" src="<%= @google_maps_url %>"></iframe>
+      <h3 id="event-venue-info"><%= @event.venue.name %></h3>
+      <p class="venue-address">
+        <%= @event.venue.street_address %></br>
+        <% if @event.venue.street_address_2 %>
+          <%= @event.venue.street_address_2 %></br>
+        <% end %>
+        <%= "#{@event.venue.city}, #{@event.venue.state}" %>
+      </p>
+    </div>
+  </div>
 </div>
+<!-- Event and venue section ends -->
+
+<!-- About section starts -->
+<div class="row" id="about-description">
+  <div class="small-12-columns">
+    <div class="small-6 columns" id="about">
+      <h5>About</h5>
+    </div>
+    <div class="small-6 columns" id="description">
+      <p><%= @event.description %></p>
+    </div>
+  </div>
+</div>
+<!-- About section ends -->
+
+<!-- Positions section starts -->
+<div class="row" id="positions">
+  <div>
+    <% if current_user.admin? %>
+      <h5>Calls</h5>
+      <input type="button" name="add-position-button" value="Add Position" id="add-position-button" />
+      <div id="add-position-menu">
+        <%= form_for [@event, @call], remote: true do |f| %>
+          <div class="field">
+            <%= f.collection_select(:position_id, @positions, :id, :name, prompt: true) %>
+          </div>
+
+          <div class="field">
+            <%= f.label :start_time %><br>
+            <%= f.datetime_local_field :start_time %>
+          </div>
+
+          <div class="field">
+            <%= f.label :end_time %><br>
+            <%= f.datetime_local_field :end_time %>
+          </div>
+
+          <div class="actions" id="call-action-button">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<!-- Positions section ends -->
 
 <div>
   <% if !current_user.admin? %>

@@ -5,7 +5,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, value: (session["devise.google_data"] ? session["devise.google_data"]["email"] : ""), autofocus: true %>
   </div>
 
   <div class="field">
@@ -23,12 +23,12 @@
 
   <div class="field">
     <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
+    <%= f.text_field :first_name, value: (session["devise.google_data"] ? session["devise.google_data"]["first_name"] : "") %>
   </div>
 
   <div class="field">
     <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
+    <%= f.text_field :last_name, value: (session["devise.google_data"] ? session["devise.google_data"]["last_name"] : "") %>
   </div>
 
   <div class="field">

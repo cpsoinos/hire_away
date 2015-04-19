@@ -1,7 +1,15 @@
 // Place all the styles related to the events controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "utilities/variables";
 
+.container {
+  margin-top: 3.5rem;
+}
+
+/*                */
+/* New Event Page */
+/*                */
 
 #new-venue-form {
   display: none;
@@ -13,4 +21,203 @@
 
 #new-position-form {
   display: none;
+}
+
+/*             */
+/* Top section */
+/*             */
+
+.title {
+  height: auto;
+
+  h1 {
+    font-family: $brand-font;
+    color: $main-color-5;
+  }
+}
+
+#new-event-button {
+  background: none;
+  color: $main-color-5;
+  border: 1px solid;
+  border-color: $main-color-5;
+}
+
+/*      */
+/* List */
+/*      */
+
+#event-list-panel {
+  height: 40em;
+  overflow: auto;
+  background: none;
+  padding: 0;
+}
+
+.events-table {
+  background: none;
+  margin-top: 0.5rem;
+
+  th {
+    color: $main-color-5;
+    text-align: center;
+  }
+
+  tr td div.event-info {
+    position: relative;
+    min-height: 2.5rem;
+
+    div.event-times {
+      font-size: 7.5pt;
+      font-style: italic;
+      text-align: right;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+  }
+
+  tr td.venue-info {
+    text-align: center;
+    font-size: 8pt;
+  }
+
+  tr td, a {
+    color: $main-color-5;
+    line-height: 0.725rem;
+  }
+
+  a {
+    font-size: 10pt;
+
+  }
+
+  a:hover {
+    color: orange;
+  }
+
+  table {
+    background: none;
+    border: none;
+
+    td.buttons {
+      text-align: center;
+    }
+
+    input {
+      background: none;
+      color: $main-color-5;
+      border: 1px solid;
+      border-color: $main-color-5;
+      border-radius: 0.5em;
+
+      &#index-delete:hover {
+        color: $main-color-5;
+        background-color: rgba(255, 0, 0, 0.5);
+      }
+    }
+
+    & tr.even, & tr.alt, & tr:nth-of-type(even) {
+      background-color: rgba(0, 34, 43, 0.5);
+    }
+  }
+}
+
+/*        */
+/* Button */
+/*        */
+
+#new-event-button-row {
+  height: 25.25rem;
+  margin-top: 3.5rem;
+}
+
+/*          */
+/* Calendar */
+/*          */
+
+#event-calendar-panel {
+  /* margin-top: 28.75rem; */
+  border: none;
+  height: 30.8rem;
+  overflow: auto;
+  background: none;
+  padding: 0;
+}
+
+iframe.events-calendar {
+  border: none;
+  width: 29.275rem;
+  height: 29.375em;
+  scrolling: no;
+}
+
+/*              */
+/* Details Page */
+/*              */
+
+.top-row {
+  margin-top: 3.5rem;
+}
+
+.show-title {
+  text-align: right;
+}
+
+.event-details {
+  font-size: 10pt;
+  font-style: italic;
+  text-align: right;
+  padding-left: 5rem;
+}
+
+#buttons-for-event {
+  margin-top: 8rem;
+}
+
+.event-edit-delete {
+  background: none;
+  color: $main-color-5;
+  border: 1px solid;
+  border-color: $main-color-5;
+}
+
+#delete-show:hover {
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+.venue-info {
+  margin-top: 7rem;
+  text-align: left;
+  font-size: 10pt;
+}
+
+iframe.map {
+  width: 400px;
+  height: 350px;
+  border: 0;
+  border-style: none;
+}
+
+.venue-address {
+  text-align: left;
+  font-size: 10pt;
+  font-style: italic;
+}
+
+#about-description {
+  margin-top: 5rem;
+  /* background: url(../assets/tree-lights.png) no-repeat center center fixed; */
+  /* width: 100%; */
+  height: 10rem;
+}
+
+#about {
+  text-align: right;
+}
+
+#description {
+  margin-top: 2rem;
+  text-align: left;
+  font-style: italic;
 }
