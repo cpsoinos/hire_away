@@ -221,3 +221,125 @@ iframe.map {
   text-align: left;
   font-style: italic;
 }
+
+#positions {
+  margin-bottom: 5rem;
+}
+
+.add-position-button {
+  color: $main-color-5;
+  background: none;
+  border: 1px solid $main-color-5;
+  text-align: right;
+
+  &:hover {
+    background-color: $main-color-4;
+  }
+}
+
+#add-position-button-2 {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  font-style: italic;
+}
+
+.position-form-fields {
+  width: 50%;
+  /* float: right; */
+}
+
+label {
+  line-height: 2.5rem;
+  color: $main-color-5;
+}
+
+#new-position-button {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+}
+
+#calls-table {
+  margin-top: 6.8rem;
+
+  table {
+    background: none;
+    border-radius: 0.5rem;
+
+    & tr.even, & tr.alt, & tr:nth-of-type(even) {
+      background-color: rgba(0, 34, 43, 0.5);
+    }
+
+    tr td, th {
+      color: $main-color-5;
+      background: none;
+    }
+
+    tr th {
+      text-align: center;
+    }
+
+    select {
+      height: 2rem;
+      padding: 0.25rem;
+    }
+  }
+}
+
+#create-position-button {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  font-style: italic;
+}
+
+#offer_user_id {
+  height: 12rem;
+  text-align: right;
+  width: 50%;
+  background: none;
+  color: $main-color-5;
+}
+
+#vendors {
+  margin-bottom: 5rem;
+}
+
+#vendors-emailed {
+  margin-top: 6.8rem;
+
+  table {
+    background: none;
+    border-radius: 0.5rem;
+
+    & tr.even, & tr.alt, & tr:nth-of-type(even) {
+      background-color: rgba(0, 34, 43, 0.5);
+    }
+
+    tr td, th {
+      color: $main-color-5;
+      background: none;
+    }
+
+    tr th {
+      text-align: center;
+    }
+
+    select {
+      height: 2rem;
+      padding: 0.25rem;
+    }
+  }
+}
+
+#create-offer-button {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.7rem;
+  padding-bottom: 0.7rem;
+  font-style: italic;
+}
