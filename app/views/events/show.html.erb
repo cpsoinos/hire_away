@@ -62,20 +62,20 @@
           </div>
 
           <div class="row">
-            <div class="field small-6 columns">
+            <div class="field small-3 columns">
               <%= f.label :start_time %>
             </div>
-            <div class="field small-6 columns">
-              <%= f.datetime_local_field :start_time %>
+            <div class="field small-9 columns">
+              <%= f.datetime_local_field :start_time, class: "dropdown-select" %>
             </div>
           </div>
 
           <div class="row">
-            <div class="field small-6 columns">
+            <div class="field small-3 columns">
               <%= f.label :end_time %>
             </div>
-            <div class="field small-6 columns">
-              <%= f.datetime_local_field :end_time %>
+            <div class="field small-9 columns">
+              <%= f.datetime_local_field :end_time, class: "dropdown-select" %>
             </div>
           </div>
 
@@ -142,8 +142,7 @@
         <table id="event-call-list">
           <tr>
             <th>Position</th>
-            <th>Start Time</th>
-            <th>End Time</th>
+            <th>Times</th>
             <th>Available Vendors</th>
             <th>Assigned Vendor</th>
           </tr>
@@ -151,13 +150,15 @@
             <% if call.valid? %>
               <tr>
                 <td><%= call.position.name %></td>
-                <td><%= call.start_time.strftime("%B %e, %l:%M%P") %></td>
-                <td><%= call.end_time.strftime("%B %e, %l:%M%P") %></td>
+                <td class="call-times">
+                  <%= call.start_time.strftime("%B %e, %l:%M%P") %></br>
+                  - </br>
+                  <%= call.end_time.strftime("%B %e, %l:%M%P") %></td>
                 <td>
                   <ul>
                     <% call.availabilities.each do |availability| %>
                       <% if availability.offer %>
-                        <li><%= availability.offer.user.full_name %></li>
+                        <li class="vendor-list"><%= availability.offer.user.full_name %></li>
                       <% end %>
                     <% end %>
                   </ul>
@@ -171,7 +172,7 @@
                       <% end %>
                       <%= f.collection_select(:user_id, @users, :id, :full_name, prompt: true) %>
                       <div class="actions" id="call-action-button2">
-                        <%= f.submit %>
+                        <%= f.submit id: "assign-vendor-button" %>
                       </div>
                     <% end %>
                   </div>

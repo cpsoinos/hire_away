@@ -276,6 +276,11 @@ label {
     tr td, th {
       color: $main-color-5;
       background: none;
+      text-align: center;
+
+      &.call-times {
+        font-size: 8pt;
+      }
     }
 
     tr th {
@@ -286,7 +291,36 @@ label {
       height: 2rem;
       padding: 0.25rem;
     }
+
+    ul {
+      margin-left: 0.4rem;
+    }
+
+    li {
+      list-style: square;
+      font-size: 8pt;
+      text-align: left;
+    }
   }
+}
+
+#call_user_id {
+  background: $main-color-5;
+  color: $main-color-4;
+  border-radius: 0.5rem;
+}
+
+input[type="datetime-local"].dropdown-select, select#call_position_id {
+  background: $main-color-5;
+  color: $main-color-4;
+  border-radius: 0.5rem;
+}
+
+#assign-vendor-button {
+  background: none;
+  color: $main-color-5;
+  border: 1px solid $main-color-5;
+  border-radius: 0.5rem;
 }
 
 #create-position-button {
