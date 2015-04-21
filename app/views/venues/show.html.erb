@@ -1,19 +1,52 @@
-<h1><%= @venue.name %></h1>
+<div class="row top-row">
+  <div class="small-12 columns">
+    <div class="small-6 columns show-title">
+      <h1><%= @venue.name %></h1>
+      <p class="event-details">
+        <%= @venue.street_address %>
+        <%= @venue.street_address_2 %>,
+        <%= @venue.city %>, <%= @venue.state %> <%= @venue.zip_code %>
+       </p>
+      <% if current_user.admin? %>
+        <div id="buttons-for-event">
+          <%= button_to "Edit", edit_venue_path(@venue),
+            method: :get, class: "button radius event-edit-delete" %>
+          <%= button_to "Delete", event_path(@venue),
+            method: :delete, action: :destroy,
+            data: { confirm: "Are you sure?" },
+            class: "button radius event-edit-delete", id: "delete-show" %>
+        </div>
+      <% end %>
+    </div>
+    <div class="small-6 columns venue-info">
+      <iframe class="map" src="<%= @google_maps_url %>"></iframe>
+    </div>
+  </div>
+</div>
 
-<ul>
-  <li class="venue"><%= @venue.street_address %></li>
-  <% if @venue.street_address_2 %>
-    <li class="venue"><%= @venue.street_address_2 %></li>
-  <% end %>
-  <li class="venue-city-state-zip"><%= @venue.city %>,
-    <%= @venue.state %> <%= @venue.zip_code %></li>
+
+<div class="row" id="about-description">
+  <div class="small-12-columns">
+    <div class="small-6 columns about">
+      <h5>About</h5>
+    </div>
+    <div class="small-6 columns description">
+      <p><%= @venue.description %></p>
+      <ul>
+        <% @optionals.each do |option| %>
+          <% if option.length > 0 %>
+            <li><%= option %></li>
+          <% end %>
+        <% end %>
+      </ul>
+
+    </div>
+  </div>
+</div>
+
   <% @optionals.each do |option| %>
     <% if option %>
       <li><%= option %></li>
     <% end %>
   <% end %>
 </ul>
-
-<%= button_to "Edit venue", edit_venue_path(@venue), method: :get %>
-<%= button_to "Delete venue", venue_path(@venue),
-  method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>
