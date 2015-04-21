@@ -62,19 +62,19 @@
           </div>
 
           <div class="row">
-            <div class="field small-3 columns">
+            <div class="field small-6 columns">
               <%= f.label :start_time %>
             </div>
-            <div class="field small-9 columns">
+            <div class="field small-6 columns">
               <%= f.datetime_local_field :start_time, class: "dropdown-select" %>
             </div>
           </div>
 
           <div class="row">
-            <div class="field small-3 columns">
+            <div class="field small-6 columns">
               <%= f.label :end_time %>
             </div>
-            <div class="field small-9 columns">
+            <div class="field small-6 columns">
               <%= f.datetime_local_field :end_time, class: "dropdown-select" %>
             </div>
           </div>
@@ -85,7 +85,7 @@
         <% end %>
       </div>
     <% end %>
-    <p>Don't see the position you're looking for?</p>
+    <p id="new-position-query">Don't see the position you're looking for?</p>
     <input type="button" name="new-position-button" value="Add a new position" class="button radius add-position-button" id="new-position-button" />
     <div id="new-position-form">
       <%= render "./positions/form" %>

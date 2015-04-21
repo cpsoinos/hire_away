@@ -318,6 +318,13 @@ input[type="datetime-local"].dropdown-select, select#call_position_id {
   background: $main-color-5;
   color: $main-color-4;
   border-radius: 0.5rem;
+/*   width: 60%;
+ */  float: right;
+}
+
+#new-position-query {
+  font-style: italic;
+  margin-top: 2rem;
 }
 
 #assign-vendor-button {
