@@ -4,53 +4,97 @@
       <p><%= msg %></p>
     <% end %>
 
-    <div class="field">
-      <%= f.label :name %><br>
-      <%= f.text_field :name %>
+    <div class="field row">
+      <div class="small-3 columns">
+        <%= f.label :name, class: "label-right" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_field :name, class: "dropdown-select" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :street_address %><br>
-      <%= f.text_field :street_address %>
+    <div class="field row">
+      <div class="small-3 columns">
+        <%= f.label :street_address, class: "label-right" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_field :street_address, class: "dropdown-select" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :street_address_2 %><br>
-      <%= f.text_field :street_address_2 %>
+    <div class="field row">
+      <div class="small-3 columns">
+        <%= f.label :street_address_2, value: "Address line 2", class: "label-right" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_field :street_address_2, class: "dropdown-select" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :city %><br>
-      <%= f.text_field :city %>
+    <div class="field row">
+      <div class="small-3 columns">
+        <%= f.label :city, class: "label-right" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_field :city, class: "dropdown-select" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :state %><br>
-      <%= f.select :state, options_for_select(CountryStateSelect::Constant::USA_STATES) %>
+    <div class="field row">
+      <div class="small-3 columns">
+        <%= f.label :state, class: "label-right" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.select :state, options_for_select(CountryStateSelect::Constant::USA_STATES), class: "dropdown-select" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :zip_code %><br>
-      <%= f.text_field :zip_code %>
+    <div class="field row">
+      <div class="small-3 columns">
+        <%= f.label :zip_code, class: "label-right" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_field :zip_code, class: "dropdown-select" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :contact_name %>
-      <%= f.text_field :contact_name %>
+    <div class="field row">
+      <div class="small-3 columns">
+        <%= f.label :contact_name, class: "label-right" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_field :contact_name, class: "dropdown-select" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :contact_phone %>
-      <%= f.text_field :contact_phone %>
+    <div class="field row">
+      <div class="small-3 columns">
+        <%= f.label :contact_phone, class: "label-right" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_field :contact_phone, class: "dropdown-select" %>
+      </div>
     </div>
 
-    <div class="field">
-      <%= f.label :contact_email %>
-      <%= f.text_field :contact_email %>
+    <div class="field row">
+      <div class="small-3 columns">
+        <%= f.label :contact_email, class: "label-right" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_field :contact_email, class: "dropdown-select" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-12 columns">
+        <p class="fineprint">
+          Fields marked with a * are required.
+        </p>
+      </div>
     </div>
 
     <div class="actions" id="venue-action-button">
-      <%= f.submit %>
+      <%= f.submit class: "button radius add-item-button add-item-button-2" %>
     </div>
   <% end %>
 </div>

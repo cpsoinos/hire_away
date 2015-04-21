@@ -1,18 +1,55 @@
-<h1>Venues</h1>
+<div class="container row">
+  <div class="small-6 columns">
+    <div class="small-6 columns title">
+      <h1>Venues</h1>
+    </div>
 
-<%= button_to "New venue", new_venue_path, method: :get %>
+    <div class="small-12 columns events-table">
+      <div class="panel radius list-panel">
+        <table class="index-list">
+          <tr class="header">
+            <th>Name</th>
+            <th>City</th>
+            <th>State</th>
+          </tr>
+          <% if current_user.admin? %>
+            <% @venues.each do |venue| %>
+              <tr>
+                <td><%= link_to venue.name, venue_path(venue) %></td>
+                <td><%= venue.city %></td>
+                <td><%= venue.state %></td>
+                <td class="buttons">
+                  <%= button_to "Edit", venue_path(venue),
+                    class: "radius-button index-edit", method: :get %>
+                  <%= button_to "Delete", venue_path(venue),
+                    class: "radius-button index-delete",
+                    method: :delete, action: :destroy,
+                    data: { confirm: "Are you sure?" } %>
+                </td>
+              </tr>
+            <% end %>
+          <% end %>
+        </table>
+      </div>
+    </div>
+  </div>
 
-<table>
-  <tr>
-    <th>Name</th>
-  </tr>
-  <% @venues.each do |venue| %>
-    <tr>
-      <td><%= link_to venue.name, venue_path(venue) %></td>
-      <td><%= button_to "Edit venue", venue_path(venue), method: :get %></td>
-      <td><%= button_to "Delete venue", venue_path(venue),
-        method: :delete, action: :destroy,
-        data: { confirm: "Are you sure?" } %></td>
-    </tr>
-  <% end %>
-</table>
+  <div class="small-6 columns">
+    <div class="container">
+      <div class="row valign-middle new-button-row">
+          <% if current_user.admin? %>
+            <div class="small-12 columns">
+              <div id="new-button-container">
+
+                <input type="button" name="new-venue-button" value="Create a new venue" class="new-venue-button button radius new-button" />
+                <div id="new-venue-form">
+                  <%= render "form" %>
+                </div>
+
+              </div>
+            </div>
+          <% end %>
+      </div>
+    </div>
+  </div>
+</div>

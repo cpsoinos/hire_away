@@ -36,7 +36,7 @@
   }
 }
 
-#new-event-button {
+.new-button {
   background: none;
   color: $main-color-5;
   border: 1px solid;
@@ -47,7 +47,7 @@
 /* List */
 /*      */
 
-#event-list-panel {
+.list-panel {
   height: 40em;
   overflow: auto;
   background: none;
@@ -67,7 +67,7 @@
     text-align: center;
   }
 
-  tr td div.event-info {
+  tr td div.info-cell {
     position: relative;
     min-height: 2.5rem;
 
@@ -115,7 +115,7 @@
       border-color: $main-color-5;
       border-radius: 0.5em;
 
-      &#index-delete:hover {
+      &.index-delete:hover {
         color: $main-color-5;
         background-color: rgba(255, 0, 0, 0.5);
       }
@@ -131,7 +131,7 @@
 /* Button */
 /*        */
 
-#new-event-button-row {
+.new-button-row {
   height: 25.25rem;
   margin-top: 3.5rem;
 }
@@ -230,7 +230,7 @@ iframe.map {
   margin-bottom: 5rem;
 }
 
-.add-position-button {
+.add-item-button {
   color: $main-color-5;
   background: none;
   border: 1px solid $main-color-5;
@@ -241,7 +241,7 @@ iframe.map {
   }
 }
 
-#add-position-button-2 {
+.add-item-button-2 {
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.7rem;
@@ -282,7 +282,7 @@ label {
       background: none;
       text-align: center;
 
-      &.call-times {
+      &.add-item-button-times {
         font-size: 8pt;
       }
     }
@@ -314,7 +314,7 @@ label {
   border-radius: 0.5rem;
 }
 
-input[type="datetime-local"].dropdown-select, select#call_position_id {
+input.dropdown-select, select#call_position_id, select#venue_state {
   background: $main-color-5;
   color: $main-color-4;
   border-radius: 0.5rem;

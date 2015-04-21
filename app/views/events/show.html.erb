@@ -51,7 +51,7 @@
   <div class="small-6 columns about">
     <% if current_user.admin? %>
       <h5>Calls</h5>
-      <input type="button" name="add-position-button" value="Add Position" class="button radius add-position-button" id="add-position-button" />
+      <input type="button" name="add-item-button" value="Add Position" class="button radius add-item-button" id="add-item-button" />
       <div id="add-position-menu">
         <%= form_for [@event, @call], remote: true do |f| %>
           <div class="row">
@@ -80,13 +80,13 @@
           </div>
 
           <div class="actions" id="call-action-button">
-            <%= f.submit class: "button radius add-position-button", id: "add-position-button-2" %>
+            <%= f.submit class: "button radius add-item-button add-item-button-2" %>
           </div>
         <% end %>
       </div>
     <% end %>
     <p id="new-position-query">Don't see the position you're looking for?</p>
-    <input type="button" name="new-position-button" value="Add a new position" class="button radius add-position-button" id="new-position-button" />
+    <input type="button" name="new-position-button" value="Add a new position" class="button radius add-item-button" id="new-position-button" />
     <div id="new-position-form">
       <%= render "./positions/form" %>
     </div>
@@ -196,7 +196,7 @@
             <%= f.select(:user_id, @users.collect { |user| [user.full_name, user.id] }, { include_hidden: false }, { multiple: true }) %>
           </div>
           <div class="actions">
-            <%= f.submit class: "button radius add-position-button", id: "create-offer-button" %>
+            <%= f.submit class: "button radius add-item-button", id: "create-offer-button" %>
           </div>
         <% end %>
       </div>
