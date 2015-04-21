@@ -36,7 +36,7 @@
   }
 }
 
-#new-event-button {
+.new-button {
   background: none;
   color: $main-color-5;
   border: 1px solid;
@@ -47,7 +47,7 @@
 /* List */
 /*      */
 
-#event-list-panel {
+.list-panel {
   height: 40em;
   overflow: auto;
   background: none;
@@ -67,7 +67,7 @@
     text-align: center;
   }
 
-  tr td div.event-info {
+  tr td div.info-cell {
     position: relative;
     min-height: 2.5rem;
 
@@ -115,7 +115,7 @@
       border-color: $main-color-5;
       border-radius: 0.5em;
 
-      &#index-delete:hover {
+      &.index-delete:hover {
         color: $main-color-5;
         background-color: rgba(255, 0, 0, 0.5);
       }
@@ -131,7 +131,7 @@
 /* Button */
 /*        */
 
-#new-event-button-row {
+.new-button-row {
   height: 25.25rem;
   margin-top: 3.5rem;
 }

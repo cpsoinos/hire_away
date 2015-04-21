@@ -7,6 +7,8 @@ class Event < ActiveRecord::Base
 
   validates :name, presence: true
   validates :venue, presence: true
+  validates :start_time, presence: true
+  validates :end_time, presence: true
 
   def google_datetime(time)
     time.to_datetime.rfc3339
