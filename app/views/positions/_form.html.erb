@@ -9,7 +9,7 @@
         <%= f.label :name %>
       </div>
       <div class="small-6 columns">
-        <%= f.text_field :name %>
+        <%= f.text_field :name, class: "dropdown-select" %>
       </div>
     </div>
   </div>
@@ -20,7 +20,7 @@
         <%= f.label :pay_rate_cents %>
       </div>
       <div class="small-6 columns">
-        <%= f.text_field :pay_rate_cents %>
+        <%= f.text_field :pay_rate_cents, class: "dropdown-select" %>
       </div>
     </div>
   </div>
@@ -34,6 +34,6 @@
   </div>
 
   <div class="actions" id="position-action-button">
-    <%= f.submit class: "button radius add-position-button", id: "create-position-button" %>
+    <%= f.submit class: "button radius add-item-button", id: "create-position-button" %>
   </div>
 <% end %>

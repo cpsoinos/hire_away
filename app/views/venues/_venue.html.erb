@@ -1,0 +1,13 @@
+<tr>
+  <td><%= venue.name %></td>
+  <td><%= venue.city %></td>
+  <td><%= venue.state %></td>
+  <td class="buttons">
+    <%= button_to "Edit", venue_path(venue),
+      class: "radius-button index-edit", method: :get %>
+    <%= button_to "Delete", venue_path(venue),
+      class: "radius-button index-delete",
+      method: :delete, action: :destroy,
+      data: { confirm: "Are you sure?" } %>
+  </td>
+</tr>

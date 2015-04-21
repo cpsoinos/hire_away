@@ -1,1 +1,3 @@
 $("#event_venue_id").prepend("<option value=\"<%= @venue.id %>\"><%= @venue.name %></option>");
+
+$("<%= escape_javascript(render @venue) %>").appendTo(".index-list");
