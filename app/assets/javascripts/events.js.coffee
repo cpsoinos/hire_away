@@ -32,3 +32,8 @@ $('#position-action-button').click ->
   $('#new-position-form').toggle 'slow', ->
     return
   return
+
+$('.edit-call').click ->
+  $('#edit-call').toggle 'slow', ->
+    return
+  return

@@ -1,14 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+    <style>
+      body {
+        font-family: "Helvetica Neue";
+        color: #265B6A;
+      };
+      table {
+        -webkit-border-horizontal-spacing: 10px;
+      };
+      table th {
+        font-style: bold;
+        text-align: center;
+      };
+      h3 {
+        margin-left: 1rem;
+        font-style: italic;
+      }
+    </style>
   </head>
-  <body>
+  <body style="font-family: &quot;Helvetica Neue&quot;;color: #265B6A;">
     <p>Hi <%= @user.first_name %>,</p>
     <p>We have new calls available:</p>
     <div>
       <h2><%= @event.name %></h2>
       <h3>at <%= @event.venue.name %></h3>
+      <p><%= @event.venue.city %>, <%= @event.venue.state %></p>
       <table>
         <tr>
           <th>Start Time</th>
@@ -17,8 +35,8 @@
         </tr>
         <% @calls.each do |call| %>
           <tr>
-            <td><%= call.start_time.strftime("%B %e, %Y %l:%M%P") %></td>
-            <td><%= call.end_time.strftime("%B %e, %Y %l:%M%P") %></td>
+            <td><%= call.start_time.strftime("%-m/%e, %l:%M%P") %></td>
+            <td><%= call.end_time.strftime("%-m/%e, %l:%M%P") %></td>
             <td><%= call.position.name %></td>
           </tr>
         <% end %>

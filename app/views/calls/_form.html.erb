@@ -1,0 +1,30 @@
+<%= form_for [@event, @call], remote: true do |f| %>
+  <div class="row">
+    <div class="field position-form-fields small-6 columns"></div>
+    <div class="field position-form-fields small-6 columns">
+      <%= f.collection_select(:position_id, @positions, :id, :name, prompt: true) %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field small-6 columns">
+      <%= f.label :start_time %>
+    </div>
+    <div class="field small-6 columns">
+      <%= f.datetime_local_field :start_time, class: "dropdown-select" %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="field small-6 columns">
+      <%= f.label :end_time %>
+    </div>
+    <div class="field small-6 columns">
+      <%= f.datetime_local_field :end_time, class: "dropdown-select" %>
+    </div>
+  </div>
+
+  <div class="actions" id="call-action-button">
+    <%= f.submit class: "button radius add-item-button add-item-button-2" %>
+  </div>
+<% end %>

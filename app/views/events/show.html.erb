@@ -53,36 +53,7 @@
       <h5>Calls</h5>
       <input type="button" name="add-item-button" value="Add Position" class="button radius add-item-button" id="add-item-button" />
       <div id="add-position-menu">
-        <%= form_for [@event, @call], remote: true do |f| %>
-          <div class="row">
-            <div class="field position-form-fields small-6 columns"></div>
-            <div class="field position-form-fields small-6 columns">
-              <%= f.collection_select(:position_id, @positions, :id, :name, prompt: true) %>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="field small-6 columns">
-              <%= f.label :start_time %>
-            </div>
-            <div class="field small-6 columns">
-              <%= f.datetime_local_field :start_time, class: "dropdown-select" %>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="field small-6 columns">
-              <%= f.label :end_time %>
-            </div>
-            <div class="field small-6 columns">
-              <%= f.datetime_local_field :end_time, class: "dropdown-select" %>
-            </div>
-          </div>
-
-          <div class="actions" id="call-action-button">
-            <%= f.submit class: "button radius add-item-button add-item-button-2" %>
-          </div>
-        <% end %>
+        <%= render "./calls/form" %>
       </div>
     <% end %>
     <p id="new-position-query">Don't see the position you're looking for?</p>
@@ -177,6 +148,14 @@
                     <% end %>
                   </div>
                 </td>
+                <td class="buttons">
+                  <%= button_to "Edit", call_path(call),
+                    class: "radius-button index-edit edit-call", method: :get %>
+                  <%= button_to "Delete", call_path(call),
+                    class: "radius-button index-delete",
+                    method: :delete, action: :destroy,
+                    data: { confirm: "Are you sure?" } %>
+                </td>
               </tr>
             <% end %>
           <% end %>
@@ -184,6 +163,10 @@
       <% end %>
     <% end %>
   </div>
+</div>
+
+<div id="edit-call">
+  <%= render "./calls/form" %>
 </div>
 
 <div class="row" id="vendors">

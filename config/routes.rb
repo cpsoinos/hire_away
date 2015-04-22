@@ -42,10 +42,11 @@ Rails.application.routes.draw do
     :destroy
   ]
 
-  resources :calls do
+  resources :calls, only: [:create, :new, :destroy] do
     resources :availabilities
   end
-  resources :offers
+
+  resources :offers, only: [:create]
 
   get 'mailer(/:action(/:id(.:format)))' => 'mailer#:action'
 
