@@ -4,31 +4,64 @@
   <% end %>
 
   <div class="venue-container">
-    <div class="field" id="venues">
-      <%= f.label :venue %><br>
-      <%= f.select(:venue_id, @venues.collect { |venue| [venue.name, venue.id] }) %>
+    <div class="field row" id="venues">
+      <div class="small-6 columns">
+        <%= f.label :venue, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.select :venue_id,
+        options_for_select(@venues.collect { |venue| [venue.name, venue.id] }),
+        class: "dropdown-select" %>
+      </div>
     </div>
   </div>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+  <div class="field row">
+    <div class="small-6 columns">
+      <%= f.label :name, class: "label-right" %>
+    </div>
+    <div class="small-6 columns">
+      <%= f.text_field :name, class: "dropdown-select" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
+  <div class="field row">
+    <div class="small-6 columns">
+      <%= f.label :description, class: "label-right" %>
+    </div>
+    <div class="small-6 columns">
+      <%= f.text_area :description, class: "dropdown-select describe-me" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= f.label :start_time %><br>
-    <%= f.datetime_local_field :start_time %></div>
-
-  <div class="field">
-    <%= f.label :end_time %><br>
-    <%= f.datetime_local_field :end_time %></div>
-
-  <div class="actions">
-    <%= f.submit %>
+  <div class="field row">
+    <div class="small-6 columns">
+      <%= f.label :start_time, class: "label-right" %>
+    </div>
+    <div class="small-6 columns">
+      <%= f.datetime_local_field :start_time, class: "dropdown-select" %>
+    </div>
   </div>
+
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :end_time, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.datetime_local_field :end_time, class: "dropdown-select" %>
+      </div>
+    </div>
+
+  <div class="row">
+    <div class="small-6 columns"></div>
+    <div class="small-6 columns">
+      <p class="fineprint">
+        Fields marked with an * are required.
+      </p>
+      <div class="actions">
+        <%= f.submit class: "button radius add-item-button add-item-button" %>
+      </div>
+    </div>
+  </div>
+
 <% end %>

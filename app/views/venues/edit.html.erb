@@ -1,6 +1,24 @@
-<h1>Edit venue details below</h1>
+<div class="row top-row">
+  <div class="small-12 columns">
+    <div class="small-6 columns show-title">
+      <h1>Edit venue details below</h1>
+    </div>
+  </div>
+</div>
 
-<%= render "form" %>
-
-<%= button_to "Delete venue", venue_path(@venue),
-  method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>
+<div class="row" id="about-description">
+  <div class="small-12-columns">
+    <div class="small-6 columns venue-info" id="venue-map">
+      <iframe class="map" src="<%= @google_maps_url %>"></iframe>
+      <div class="button">
+        <%= button_to "Delete venue", venue_path(@venue),
+          class: "button radius add-item-button add-item-button-2 delete",
+          id: "delete-venue-edit-page",
+          method: :delete, action: :destroy, data: { confirm: "Are you sure?" } %>
+      </div>
+    </div>
+    <div class="small-6 columns">
+      <%= render "form" %>
+    </div>
+  </div>
+</div>

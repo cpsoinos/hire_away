@@ -15,6 +15,16 @@
 
     <div class="field row">
       <div class="small-3 columns">
+        <%= f.label :description, class: "label-right" %>
+      </div>
+      <div class="small-9 columns">
+        <%= f.text_area :description,
+          class: "dropdown-select describe-me" %>
+      </div>
+    </div>
+
+    <div class="field row">
+      <div class="small-3 columns">
         <%= f.label :street_address, class: "label-right" %>
       </div>
       <div class="small-9 columns">
@@ -45,7 +55,9 @@
         <%= f.label :state, class: "label-right" %>
       </div>
       <div class="small-9 columns">
-        <%= f.select :state, options_for_select(CountryStateSelect::Constant::USA_STATES), class: "dropdown-select" %>
+        <%= f.select :state,
+          options_for_select(CountryStateSelect::Constant::USA_STATES),
+          class: "dropdown-select" %>
       </div>
     </div>
 
@@ -86,15 +98,17 @@
     </div>
 
     <div class="row">
-      <div class="small-12 columns">
+      <div class="small-9 columns"></div>
+      <div class="small-3 columns">
         <p class="fineprint">
-          Fields marked with a * are required.
+          Fields marked with an * are required.
         </p>
+        <div class="actions" id="venue-action-button">
+          <%= f.submit class: "button radius add-item-button add-item-button-2",
+            id: "create-venue-button" %>
+        </div>
       </div>
     </div>
 
-    <div class="actions" id="venue-action-button">
-      <%= f.submit class: "button radius add-item-button add-item-button-2" %>
-    </div>
   <% end %>
 </div>

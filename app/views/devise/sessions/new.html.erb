@@ -1,26 +1,56 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<div class="row top-row">
+  <div class="small-12 columns">
+    <div class="small-6 columns show-title">
+      <h2>Log in</h2>
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
+</div>
 
-<%= render "devise/shared/links" %>
+<div class="row">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :email, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.email_field :email, autofocus: true, class: "dropdown-select" %>
+      </div>
+    </div>
+
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :password, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.password_field :password, autocomplete: "off", class: "dropdown-select" %>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="small-9 columns label-right">
+        <% if devise_mapping.rememberable? -%>
+          <div class="field row">
+            <div class="small-6 columns"></div>
+            <div class="small-6 columns" >
+              <%= f.check_box :remember_me, class: "remember-me" %>
+              <%= f.label :remember_me, class: "remember-me" %>
+            </div>
+          </div>
+        <% end -%>
+      </div>
+      <div class="small-3 columns">
+        <p class="fineprint">
+          Fields marked with an * are required.
+        </p>
+        <div class="actions">
+          <div class="registration-submit-button">
+            <%= f.submit "Log in", class: "button radius add-item-button add-item-button" %><br>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>

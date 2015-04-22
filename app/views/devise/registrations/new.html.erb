@@ -1,69 +1,133 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, value: (session["devise.google_data"] ? session["devise.google_data"]["email"] : ""), autofocus: true %>
+<div class="row top-row">
+  <div class="small-12 columns">
+    <div class="small-6 columns show-title">
+      <h2>Sign up</h2>
+    </div>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @validatable %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+<div class="row">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :email, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.email_field :email, value: (session["devise.google_data"] ? session["devise.google_data"]["email"] : ""), class: "dropdown-select", autofocus: true %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, value: (session["devise.google_data"] ? session["devise.google_data"]["first_name"] : "") %>
-  </div>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :password, class: "label-right" %>
+        <% if @validatable %>
+          <div class="label-right">
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+          </div>
+        <% end %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.password_field :password, autocomplete: "off", class: "dropdown-select" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, value: (session["devise.google_data"] ? session["devise.google_data"]["last_name"] : "") %>
-  </div>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :password_confirmation, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "dropdown-select" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :street_address %><br />
-    <%= f.text_field :street_address %>
-  </div>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :first_name, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.text_field :first_name, value: (session["devise.google_data"] ? session["devise.google_data"]["first_name"] : ""), class: "dropdown-select" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :address_line_2 %><br />
-    <%= f.text_field :street_address_2 %>
-  </div>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :last_name, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.text_field :last_name, value: (session["devise.google_data"] ? session["devise.google_data"]["last_name"] : ""), class: "dropdown-select" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :city %><br />
-    <%= f.text_field :city %>
-  </div>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :street_address, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.text_field :street_address, class: "dropdown-select" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :state %><br />
-    <%= f.select :state, options_for_select(CountryStateSelect::Constant::USA_STATES) %>
-  </div>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :address_line_2, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.text_field :street_address_2, class: "dropdown-select" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :zip_code %><br />
-    <%= f.text_field :zip_code %>
-  </div>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :city, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.text_field :city, class: "dropdown-select" %>
+      </div>
+    </div>
 
-  <div class="field">
-    <%= f.label :phone %><br />
-    <%= f.text_field :phone %>
-  </div>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :state, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.select :state, options_for_select(CountryStateSelect::Constant::USA_STATES), class: "dropdown-select" %>
+      </div>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :zip_code, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.text_field :zip_code, class: "dropdown-select" %>
+      </div>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="field row">
+      <div class="small-6 columns">
+        <%= f.label :phone, class: "label-right" %>
+      </div>
+      <div class="small-6 columns">
+        <%= f.text_field :phone, class: "dropdown-select" %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="small-9 columns"></div>
+      <div class="small-3 columns">
+        <p class="fineprint">
+          Fields marked with an * are required.
+        </p>
+        <div class="actions">
+          <div class="registration-submit-button">
+            <%= f.submit "Sign up", class: "button radius add-item-button add-item-button" %><br>
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+</div>

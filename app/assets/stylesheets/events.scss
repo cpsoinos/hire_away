@@ -314,12 +314,13 @@ label {
   border-radius: 0.5rem;
 }
 
-input.dropdown-select, select#call_position_id, select#venue_state {
+input.dropdown-select, select#call_position_id,
+select#venue_state, select#event_venue_id,
+select#user_state {
   background: $main-color-5;
   color: $main-color-4;
   border-radius: 0.5rem;
-/*   width: 60%;
- */  float: right;
+  float: right;
 }
 
 #new-position-query {
@@ -387,4 +388,8 @@ input.dropdown-select, select#call_position_id, select#venue_state {
   padding-top: 0.7rem;
   padding-bottom: 0.7rem;
   font-style: italic;
+}
+
+#new-event-form {
+  margin-top: 2rem;
 }

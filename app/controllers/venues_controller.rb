@@ -8,11 +8,11 @@ class VenuesController < ApplicationController
 
   def show
     @venue = Venue.find(params[:id])
-    @optionals = [
-      @venue.contact_phone,
-      @venue.contact_phone,
-      @venue.contact_email
-    ]
+    @optionals = {
+      "Contact" => @venue.contact_name,
+      "Phone" => @venue.contact_phone,
+      "Email" => @venue.contact_email
+    }
     @google_maps_url = %Q{
       https://www.google.com/maps/embed/v1/place?key=
       #{ENV["GOOGLE_MAPS_API_KEY"]}&q=#{@venue.parse_for_google_maps}
@@ -42,15 +42,25 @@ class VenuesController < ApplicationController
 
   def edit
     @venue = Venue.find(params[:id])
+    @google_maps_url = %Q{
+      https://www.google.com/maps/embed/v1/place?key=
+      #{ENV["GOOGLE_MAPS_API_KEY"]}&q=#{@venue.parse_for_google_maps}
+    }
   end
 
   def update
     @venue = Venue.find(params[:id])
-    if @venue.update(venue_params)
-      flash[:notice] = "Venue updated!"
-      redirect_to venue_path(@venue)
-    else
-      render :edit
+    respond_to do |format|
+      if @venue.update(venue_params)
+        format.html { redirect_to venue_path(@venue), notice: "Venue updated!" }
+        format.js do
+          flash[:notice] = "Venue updated!"
+          flash.keep(:notice)
+          render js: "window.location = '#{venue_path(@venue)}'"
+        end
+      else
+        render :edit
+      end
     end
   end
 

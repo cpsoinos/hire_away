@@ -33,20 +33,19 @@
     <div class="small-6 columns description">
       <p><%= @venue.description %></p>
       <ul>
-        <% @optionals.each do |option| %>
-          <% if option.length > 0 %>
-            <li><%= option %></li>
+        <% @optionals.each do |key, value| %>
+          <% if value %>
+            <div class="row">
+              <div class="small-3 columns">
+                <li><%= key %>:</li>
+              </div>
+              <div class="small-9 columns">
+                <li><%= value %></li>
+              </div>
+            </div>
           <% end %>
         <% end %>
       </ul>
-
     </div>
   </div>
 </div>
-
-  <% @optionals.each do |option| %>
-    <% if option %>
-      <li><%= option %></li>
-    <% end %>
-  <% end %>
-</ul>

@@ -1,0 +1,21 @@
+// Place all the styles related to the events controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "utilities/variables";
+
+.registration-submit-button {
+  text-align: right;
+}
+
+.button.small {
+  font-style: italic;
+  padding-top: 0.4rem;
+  padding-right: 1rem;
+  padding-bottom: 0.4rem;
+  padding-left: 1rem;
+}
+
+.remember-me {
+  vertical-align: top;
+  line-height: 1rem;
+}

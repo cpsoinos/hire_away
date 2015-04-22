@@ -1,10 +1,25 @@
-<h1>New Event</h1>
-
-<p><input type="button" name="new-venue-button" value="Create a new venue" class="new-venue-button" /> or select an existing one in the form below.</p>
-<div id="new-venue-form">
-  <%= render "./venues/form" %>
+<div class="row top-row">
+  <div class="small-12 columns">
+    <div class="small-6 columns show-title">
+      <h1>New Event</h1>
+    </div>
+  </div>
 </div>
 
-<div id="new-event-form">
-  <%= render "form" %>
+<div class="row">
+  <div class="small-6 columns show-title">
+    <div id="new-event-form">
+      <%= render "form" %>
+    </div>
+  </div>
+  <div class="small-6 columns venue-info">
+    <input type="button" name="new-venue-button"
+      value="Create a new venue" class="new-venue-button button radius add-item-button add-item-button" />
+    <p>
+      or select an existing one in the form to the left.
+    </p>
+    <div id="new-venue-form">
+      <%= render "./venues/form" %>
+    </div>
+  </div>
 </div>
