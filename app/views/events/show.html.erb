@@ -149,10 +149,10 @@
                   </div>
                 </td>
                 <td class="buttons">
-                  <%= button_to "Edit", call_path(call),
-                    class: "radius-button index-edit edit-call", method: :get %>
+                  <input type="button" name="edit-call" value="Edit" class="radius-button edit-call" />
+                  <% binding.pry %>
                   <%= button_to "Delete", call_path(call),
-                    class: "radius-button index-delete",
+                    class: "radius-button",
                     method: :delete, action: :destroy,
                     data: { confirm: "Are you sure?" } %>
                 </td>
