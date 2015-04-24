@@ -38,6 +38,9 @@ class CallsController < ApplicationController
         format.js do
           render :update
         end
+        format.json do
+          @call
+        end
       end
     else
       redirect :back

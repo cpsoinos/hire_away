@@ -16,7 +16,8 @@ class Event < ActiveRecord::Base
 
   def add_to_calendar(new_event, user)
     event = {
-      'summary' => new_event.description,
+      'summary' => new_event.name,
+      'description' => new_event.description,
       'location' => new_event.venue.location,
       'start' => {
         'dateTime' => google_datetime(new_event.start_time)
@@ -25,8 +26,7 @@ class Event < ActiveRecord::Base
         'dateTime' => google_datetime(new_event.end_time)
       },
     }
-    # binding.pry
-            #Use the token from the data to request a list of calendars
+    #Use the token from the data to request a list of calendars
     token = user.token
     client = Google::APIClient.new
     client.authorization.access_token = token

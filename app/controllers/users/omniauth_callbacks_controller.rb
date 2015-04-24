@@ -8,7 +8,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       sign_in_and_redirect @user, event: :authentication
     else
       # data = access_token.info
-      binding.pry
       session["devise.google_data"] = request.env["omniauth.auth"]["info"]
       redirect_to new_user_registration_path
     end
