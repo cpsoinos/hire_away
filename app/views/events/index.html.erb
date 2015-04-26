@@ -12,6 +12,7 @@
             <th>Name</th>
             <th>Venue</th>
           </tr>
+          <!-- Admin section -->
           <% if current_user.admin? %>
             <% @events.each do |event| %>
               <tr>
@@ -37,32 +38,49 @@
                 </td>
               </tr>
             <% end %>
+          <!-- Admin section ends -->
+          <!-- User section -->
           <% elsif user_signed_in? %>
             <tr>
-              <td>My Events</td>
+              <td></td>
+              <td class="user-index-title">My</td>
+              <td class="user-index-title">Events</td>
+              <td></td>
             </tr>
             <% current_user.calls.each do |call| %>
               <tr>
                 <td><%= link_to call.event.name, event_path(call.event) %></td>
-                <td><%= call.event.venue.name %></td>
+                <td>
+                  <%= link_to call.event.venue.name,
+                  venue_path(call.event.venue) %>
+                </td>
                 <td><%= call.event.venue.city %></td>
                 <td><%= call.event.venue.state %></td>
               </tr>
             <% end %>
             <tr>
-              <td>My Pending Offers</td>
+              <td></td>
+              <td class="user-index-title">Pending</td>
+              <td class="user-index-title">Offers</td>
+              <td></td>
             </tr>
             <% if @pending_offers %>
               <% @pending_offers.each do |offer| %>
                 <tr>
-                  <td><%= link_to offer.event.name, event_path(offer.event) %></td>
-                  <td><%= offer.event.venue.name %></td>
+                  <td>
+                    <%= link_to offer.event.name, event_path(offer.event) %>
+                  </td>
+                  <td>
+                    <%= link_to offer.event.venue.name,
+                    venue_path(offer.event.venue) %>
+                  </td>
                   <td><%= offer.event.venue.city %></td>
                   <td><%= offer.event.venue.state %></td>
                 </tr>
               <% end %>
             <% end %>
           <% end %>
+          <!-- User section ends -->
         </table>
       </div>
     </div>
@@ -77,7 +95,8 @@
           <% if current_user.admin? %>
             <div class="small-12 columns">
               <div id="new-button-container">
-                <%= button_to "Add new event", new_event_path, class: "button radius new-button", method: :get %>
+                <%= button_to "Add new event", new_event_path,
+                  class: "button radius new-button", method: :get %>
               </div>
             </div>
           <% end %>
@@ -91,7 +110,8 @@
       <div class="calendar">
         <iframe src="https://www.google.com/calendar/embed?showCalendars=0&amp;
           ;wkst=1&amp;src=hpn70efsttvg2ii168k3mcb6mo%40group.calendar.google.com&amp;
-          color=%23853104&amp;ctz=America%2FNew_York" class="events-calendar"></iframe>
+          color=%23853104&amp;ctz=America%2FNew_York" class="events-calendar">
+        </iframe>
       </div>
     </div>
   </div>

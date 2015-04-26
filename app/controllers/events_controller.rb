@@ -14,10 +14,11 @@ class EventsController < ApplicationController
     @calls = @event.calls
     @call = @event.calls.new
     @offer = @call.offers.new
-    @positions = Position.all
-    @position = @event.positions.new
-    @users = User.order("last_name ASC")
     @offers = @event.offers.order("created_at ASC")
+    @user_offers = @event.offers.where(user: current_user)
+    @position = @event.positions.new
+    @positions = Position.all
+    @users = User.order("last_name ASC")
     @availability = @offer.availabilities.new
     @google_maps_url = %Q{
       https://www.google.com/maps/embed/v1/place?key=
