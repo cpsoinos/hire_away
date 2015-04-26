@@ -5,6 +5,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'country_state_select'
 gem 'devise'
 gem 'factory_girl'
+gem 'faker'
 gem 'foundation-rails', "5.5.1.0"
 gem 'google-api-client', :require => 'google/api_client'
 gem 'google-webfonts-rails'
@@ -24,7 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'capybara'
   gem 'coveralls', require: false
-  gem 'faker'
   gem 'fuubar'
   gem 'launchy'
   gem 'pry-rails'
