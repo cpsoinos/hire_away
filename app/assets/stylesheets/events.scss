@@ -131,6 +131,13 @@
   }
 }
 
+.user-index-title {
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  font-family: $brand-font;
+}
+
 /*        */
 /* Button */
 /*        */
@@ -215,8 +222,6 @@ iframe.map {
 
 #about-description {
   margin-top: 5rem;
-  /* background: url(../assets/tree-lights.png) no-repeat center center fixed; */
-  /* width: 100%; */
   height: 10rem;
 }
 
@@ -275,7 +280,8 @@ label {
 
   table {
     background: none;
-    border-radius: 0.5rem;
+    border: none;
+    width: 100%;
 
     & tr.even, & tr.alt, & tr:nth-of-type(even) {
       background-color: rgba(0, 34, 43, 0.5);
@@ -288,6 +294,10 @@ label {
 
       &.add-item-button-times {
         font-size: 8pt;
+      }
+
+      p {
+        color: $main-color-5;
       }
     }
 
@@ -308,6 +318,24 @@ label {
       list-style: square;
       font-size: 8pt;
       text-align: left;
+      color: $main-color-5;
+    }
+
+    td.buttons {
+      text-align: center;
+    }
+
+    input {
+      background: none;
+      color: $main-color-5;
+      border: 1px solid;
+      border-color: $main-color-5;
+      border-radius: 0.5em;
+
+      &.index-delete:hover {
+        color: $main-color-5;
+        background-color: rgba(255, 0, 0, 0.5);
+      }
     }
   }
 }
@@ -316,6 +344,7 @@ label {
   background: $main-color-5;
   color: $main-color-4;
   border-radius: 0.5rem;
+  width: 8rem;
 }
 
 input.dropdown-select, select#call_position_id,

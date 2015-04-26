@@ -4,6 +4,7 @@ class CallsController < ApplicationController
   def create
     @event = Event.find(params[:event_id])
     @call = @event.calls.new(call_params)
+    @users = User.order("last_name ASC")
     if @call.save
       respond_to do |format|
         format.html do

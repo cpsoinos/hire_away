@@ -1,5 +1,27 @@
 <tr>
   <td><%= call.position.name %></td>
-  <td><%= call.start_time.strftime("%B %e, %Y %l:%M%P") %></td>
-  <td><%= call.end_time.strftime("%B %e, %Y %l:%M%P") %></td>
+  <td>
+    <%= call.start_time.strftime("%B %e, %Y %l:%M%P") %></br>
+    - </br>
+    <%= call.end_time.strftime("%B %e, %Y %l:%M%P") %>
+  </td>
+  <td></td>
+  <td>
+    <p id="assigned-vendor-<%= call.id %>"><%= call.user.full_name if call.user %></p>
+    <div id="assign-vendor-form">
+      <%= form_for [@event, call], remote: true do |f| %>
+        <%= f.collection_select(:user_id, @users, :id, :full_name, prompt: true) %>
+        <div class="actions" id="call-action-button2">
+          <%= f.submit id: "assign-vendor-button" %>
+        </div>
+      <% end %>
+    </div>
+  </td>
+  <td class="buttons">
+    <input type="button" name="edit-call" value="Edit" class="radius-button edit-call" />
+    <%= button_to "Delete", call_path(call),
+      class: "radius-button index-delete",
+      method: :delete, action: :destroy,
+      data: { confirm: "Are you sure?" } %>
+  </td>
 </tr>
