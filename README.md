@@ -27,3 +27,4 @@ participate in. This data will be exportable by an admin for payroll purposes.
 - Displaying proper dress code for each position at each event
 - Improved integration with Google Calendars
 - Improved notifications on call confirmation
+- Only show events that have not happened or have ended less than 2 weeks ago
