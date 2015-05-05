@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
          :timeoutable, :omniauthable, omniauth_providers: [:google_oauth2]
 
   def timeout_in
+    # in line with Google OAuth timeout for calendar writing
     1.hour
   end
 

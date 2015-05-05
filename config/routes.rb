@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   root "homes#index"
-  # devise_for :users
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
 
   resources :events, only: [
@@ -10,8 +9,7 @@ Rails.application.routes.draw do
     :create,
     :edit,
     :update,
-    :destroy,
-    :venues_select
+    :destroy
   ]
 
   resources :events, only: [:show] do

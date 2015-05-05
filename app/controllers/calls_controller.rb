@@ -16,6 +16,7 @@ class CallsController < ApplicationController
         end
       end
     else
+      # how to show error if format is js (ajax)?
       redirect_to :back
     end
   end
@@ -29,6 +30,8 @@ class CallsController < ApplicationController
       if @offer
         @offer.availabilities.find_or_create_by(available: true, call: @call)
       else
+        # creates an availability by default if admin manually assigns a user
+        # to a call without sending an offer first
         @call.availabilities.find_or_create_by(available: true)
       end
       respond_to do |format|

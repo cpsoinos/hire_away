@@ -5,6 +5,7 @@ class EventsController < ApplicationController
   def index
     @events = Event.order("start_time ASC").page(params[:page])
     pending_offers = []
+    # move this logic to model?
     current_user.offers.each { |o| pending_offers << o.event.calls.where(user: nil) }
     @pending_offers = pending_offers.flatten.uniq { |c| c.event_id }
   end
@@ -18,6 +19,8 @@ class EventsController < ApplicationController
     @user_offers = @event.offers.where(user: current_user)
     @position = @event.positions.new
     @positions = Position.all
+    # eventually limit the number of users that show,
+    # possibly by company affiliation? or paginate, use js/infinite scroll here
     @users = User.order("last_name ASC")
     @availability = @offer.availabilities.new
     @google_maps_url = %Q{
@@ -29,6 +32,7 @@ class EventsController < ApplicationController
   def new
     @event = Event.new
     @venue = Venue.new
+    # eventually limit the number of venues that show. paginate/infinite scroll?
     @venues = Venue.order("name ASC")
   end
 

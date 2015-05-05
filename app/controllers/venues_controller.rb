@@ -19,6 +19,7 @@ class VenuesController < ApplicationController
     }
   end
 
+  # currently the view isn't used. Ajax form on index page... maybe remove this
   def new
     @venue = Venue.new
   end

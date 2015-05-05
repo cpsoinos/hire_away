@@ -10,6 +10,7 @@ class Event < ActiveRecord::Base
   validates :start_time, presence: true
   validates :end_time, presence: true
 
+  # parse datetime for Google calendar format
   def google_datetime(time)
     time.to_datetime.rfc3339
   end

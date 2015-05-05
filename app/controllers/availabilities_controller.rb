@@ -6,6 +6,9 @@ class AvailabilitiesController < ApplicationController
   def create
     @offer = current_user.offers.find_by(event_id: params[:event_id])
     @event = @offer.event
+    # messy, clean this up... may need db restructure to connect users to
+    # availabilities more directly, but still let admin assign user to a call
+    # without creating an offer or availability first
     @availabilities = availability_params[:available].each_index { |i| @offer.availabilities.create(available: availability_params[:available][i], call_id: availability_params[:call_id][i]) }
     if !@availabilities.any? { |a| "true" }
       redirect_to :back

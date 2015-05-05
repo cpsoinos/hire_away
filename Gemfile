@@ -19,8 +19,8 @@ gem 'pg'
 gem 'puma'
 gem 'rails', '4.2.1'
 gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'uglifier', '>= 1.3.0'
 
 group :development, :test do
   gem 'capybara'
@@ -31,7 +31,7 @@ group :development, :test do
   gem 'rails-erd'
   gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
-  gem 'spring'
+  gem 'spring', '~> 1.3.5'
   gem 'valid_attribute'
   gem 'web-console', '~> 2.0'
 end
